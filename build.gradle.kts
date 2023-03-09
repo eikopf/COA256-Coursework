@@ -1,8 +1,15 @@
 // this section handles the high-level plugin groups
 plugins {
+    // enables java for gradle
     id("java")
+
+    // configurations for application usage
     id("application")
+
+    // GUI plugin for java
     id("org.openjfx.javafxplugin") version "0.0.13"
+
+    // adds tasks for producing fat .jar files
     id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
@@ -39,10 +46,12 @@ shadow {
 
 }
 
+// application configurations
 application {
     mainClass.set("Main")
 }
 
+// configurations for the shadowJar task
 tasks.shadowJar {
     archiveBaseName.set("F214180-Coursework")
 }

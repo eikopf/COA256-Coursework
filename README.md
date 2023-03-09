@@ -33,3 +33,4 @@ The second is the actual UI component, built using JavaFX.
 - [jenkov.com](https://jenkov.com/tutorials/javafx/index.html)
 - [Shadow Documentation](https://imperceptiblethoughts.com/shadow/)
 - [Stack Overflow: Configuring Shadow](https://stackoverflow.com/a/70864141)
+- [Awesome JavaFX](https://github.com/mhrimaz/AwesomeJavaFX)
