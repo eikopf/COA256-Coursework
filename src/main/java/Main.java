@@ -21,9 +21,5 @@ public class Main {
         for (AbstractUser user : manager.users) {
             System.out.println(user);
         }
-
-        //JFrame frame = new JFrame("hello, world!");
-        //frame.setSize(400, 800);
-        //frame.setVisible(true);
     }
 }
