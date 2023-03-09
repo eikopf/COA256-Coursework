@@ -3,6 +3,7 @@ plugins {
     id("java")
     id("application")
     id("org.openjfx.javafxplugin") version "0.0.13"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 group = "org.example"

@@ -1,5 +1,5 @@
 /**
- * An abstract class implemented by Customer and Admin. Represents a user of the system.
+ * An abstract class implemented by {@link Customer} and {@link Admin}. Represents a user of the system.
  */
 public abstract class AbstractUser {
     String id, username, surname;
