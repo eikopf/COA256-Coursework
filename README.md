@@ -3,6 +3,7 @@
 1. [Dependencies](#Dependencies)
 2. [Project Overview](#project-overview)
 3. [Building from Source](#building-from-source)
+4. [Resources](#resources)
 
 ## Dependencies
 This project relies on Gradle for dependency management, 
@@ -26,3 +27,6 @@ The second is the actual UI component, built using JavaFX.
 
 ## Building from Source
 `TODO: explain this part`
+
+## Resources
+[jenkov.com](https://jenkov.com/tutorials/javafx/index.html)

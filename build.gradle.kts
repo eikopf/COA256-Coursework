@@ -21,8 +21,6 @@ dependencies {
     implementation("org.openjfx:javafx:21-ea+5")
     // https://mvnrepository.com/artifact/org.openjfx/javafx-controls
     implementation("org.openjfx:javafx-controls:21-ea+5")
-
-
 }
 
 // enables JUnit testing
