@@ -29,8 +29,13 @@ tasks.getByName<Test>("test") {
     useJUnitPlatform()
 }
 
-// adds optional components to javafx
+// javafx configurations
 javafx {
      modules("javafx.controls")
+}
+
+// shadow configurations
+shadow {
+
 }
 
