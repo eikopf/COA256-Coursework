@@ -40,7 +40,7 @@ shadow {
 }
 
 application {
-    mainClass.set("com.example.Main")
+    mainClass.set("Main")
 }
 
 tasks.shadowJar {

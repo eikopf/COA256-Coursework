@@ -1,4 +1,6 @@
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -24,11 +26,12 @@ public class BookshopManager {
      * Attempts to read user and book data from disk
      * @throws AbstractBook.MalformedBookCharacteristicException
      */
-    void initialize() throws AbstractBook.MalformedBookCharacteristicException {
+    void initialize(InputStream stockFileStream,
+                    InputStream userAccountsFileStream) throws AbstractBook.MalformedBookCharacteristicException {
         try {
             // creates scanners over the datafiles
-            Scanner stockScanner = new Scanner(new File("src/main/resources/datafiles/Stock.txt"));
-            Scanner userScanner = new Scanner(new File("src/main/resources/datafiles/UserAccounts.txt"));
+            Scanner stockScanner = new Scanner(stockFileStream);
+            Scanner userScanner = new Scanner(userAccountsFileStream);
 
             while (stockScanner.hasNextLine()) {
                 String[] components = stockScanner.nextLine().split(", ");
@@ -113,11 +116,7 @@ public class BookshopManager {
                     ));
                 }
             } userScanner.close();
-        }
-        catch (FileNotFoundException e) {
-            System.out.println("Failed to initialize: FileNotFoundException");
-        }
-        catch (ParseException e) {
+        } catch (ParseException e) {
             System.out.println("Failed to initialize: ParseException");
         }
     }
