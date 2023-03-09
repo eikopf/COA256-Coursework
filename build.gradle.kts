@@ -29,6 +29,12 @@ dependencies {
     implementation("org.openjfx:javafx:21-ea+5")
     // https://mvnrepository.com/artifact/org.openjfx/javafx-controls
     implementation("org.openjfx:javafx-controls:21-ea+5")
+    // https://github.com/iAmGio/animated
+    implementation("eu.iamgio:animated:0.7.0")
+    // https://central.sonatype.com/artifact/org.kordamp.ikonli/ikonli-javafx/12.3.1
+    implementation("org.kordamp.ikonli:ikonli-javafx:12.3.1")
+    //https://central.sonatype.com/artifact/org.kordamp.ikonli/ikonli-bootstrapicons-pack/12.3.1
+    implementation("org.kordamp.ikonli:ikonli-bootstrapicons-pack:12.3.1")
 }
 
 // enables JUnit testing

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d99c245-dce9-4aae-8ec2-8429423a9553" name="Changes" comment="minor fixes">
+    <list default="true" id="4d99c245-dce9-4aae-8ec2-8429423a9553" name="Changes" comment="updated README.md">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
     </list>
@@ -81,55 +81,13 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.COA256-Coursework-Gradle [launch4j]">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="COA256-Coursework-Gradle.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="COA256-Coursework-Gradle [createExe]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--info" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="createExe" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="COA256-Coursework-Gradle [launch4j]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="launch4j" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
     </configuration>
     <configuration name="COA256-Coursework-Gradle [shadowJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -154,8 +112,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.COA256-Coursework-Gradle [launch4j]" />
-        <item itemvalue="Gradle.COA256-Coursework-Gradle [createExe]" />
         <item itemvalue="Gradle.COA256-Coursework-Gradle [shadowJar]" />
         <item itemvalue="Application.Main" />
       </list>
@@ -172,7 +128,7 @@
       <workItem from="1678360225702" duration="1337000" />
       <workItem from="1678361593487" duration="6179000" />
       <workItem from="1678372266459" duration="5620000" />
-      <workItem from="1678379202664" duration="3144000" />
+      <workItem from="1678379202664" duration="5381000" />
     </task>
     <task id="LOCAL-00001" summary="adding .gitignore">
       <created>1678361479976</created>
@@ -258,7 +214,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678385095238</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="updated README.md">
+      <created>1678386513969</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1678386513969</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,13 +245,13 @@
     <MESSAGE value="gradle config updates" />
     <MESSAGE value="added README.md" />
     <MESSAGE value="updated README.md &amp; added Formatted.java" />
-    <MESSAGE value="updated README.md" />
     <MESSAGE value="fixes to the Formatted interface" />
     <MESSAGE value="added Shadow dependency" />
     <MESSAGE value="fixed shadowJar task" />
     <MESSAGE value="corrected .jar generation" />
     <MESSAGE value="minor fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor fixes" />
+    <MESSAGE value="updated README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated README.md" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -13,6 +13,8 @@ and uses it to install the following plugins:
 |---------------------------------------------------|-------------------------------------------------|
 | [JavaFX](https://openjfx.io/)                     | A modern successor to Java's internal Swing API |
 | [Shadow](https://github.com/johnrengelman/shadow) | Allows the creation of "fat" `.jar` files       |
+| [animated](https://github.com/iAmGio/animated)    | A library of Flutter-style animations           |
+| [ikonli](https://github.com/kordamp/ikonli)       | Provides access to the Bootstrap icon set       |
 
 ## Project Overview
 Broadly, this project consists of two components.
@@ -34,3 +36,5 @@ The second is the actual UI component, built using JavaFX.
 - [Shadow Documentation](https://imperceptiblethoughts.com/shadow/)
 - [Stack Overflow: Configuring Shadow](https://stackoverflow.com/a/70864141)
 - [Awesome JavaFX](https://github.com/mhrimaz/AwesomeJavaFX)
+- [ikonli Documentation](https://kordamp.org/ikonli/#_introduction)
+- [animated](https://github.com/iAmGio/animated)
