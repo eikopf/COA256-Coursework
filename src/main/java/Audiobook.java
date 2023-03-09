@@ -3,7 +3,7 @@ import java.util.Date;
 /**
  * Represents an audiobook in the system. Extends {@link AbstractBook}.
  */
-public class Audiobook extends AbstractBook{
+public class Audiobook extends AbstractBook implements Formatted{
 
     /**
      * Stores the length of the audiobook in hours.
@@ -63,5 +63,15 @@ public class Audiobook extends AbstractBook{
                 default : throw new EnumConstantNotPresentException(Format.class, format);
             }
         }
+    }
+
+    @Override
+    public Class<? extends Enum> getFormatEnum() {
+        return Format.class;
+    }
+
+    @Override
+    public Enum<?> getFormatString(String format) {
+        return Format.toFormat(format);
     }
 }

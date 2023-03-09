@@ -3,7 +3,7 @@ import java.util.Date;
 /**
  * Represents an ebook in the system. Extends {@link AbstractBook}.
  */
-public class Ebook extends AbstractBook{
+public class Ebook extends AbstractBook implements Formatted{
 
     /**
      * Represents the number of (virtual) pages in the ebook.
@@ -63,5 +63,15 @@ public class Ebook extends AbstractBook{
                 default : throw new EnumConstantNotPresentException(Format.class, format);
             }
         }
+    }
+
+    @Override
+    public Class<? extends Enum> getFormatEnum() {
+        return Format.class;
+    }
+
+    @Override
+    public Enum<?> getFormatString(String format) {
+        return Format.toFormat(format);
     }
 }

@@ -13,6 +13,16 @@ and uses it to install the following plugins:
 | [JavaFX](https://openjfx.io/) | A modern successor to Java's internal Swing API |
 
 ## Project Overview
+Broadly, this project consists of two components.
 
+The first is a fairly generic set of classes for handling
+dummy book and user data, and mainly exists to demonstrate
+common OOP principles (inheritance, abstraction, interfaces),
+as well as some more advanced concepts (nested objects, 
+records, builders).
+
+The second is the actual UI component, built using JavaFX. 
+`TODO: finish this part`
 
 ## Building from Source
+`TODO: explain this part`
