@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d99c245-dce9-4aae-8ec2-8429423a9553" name="Changes" comment="updated README.md &amp; added Formatted.java" />
+    <list default="true" id="4d99c245-dce9-4aae-8ec2-8429423a9553" name="Changes" comment="updated README.md">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Audiobook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Audiobook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Ebook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Ebook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Formatted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Formatted.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +19,23 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="COA256-Coursework-Gradle" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -76,7 +98,7 @@
       <option name="presentableId" value="Default" />
       <updated>1678360224276</updated>
       <workItem from="1678360225702" duration="1337000" />
-      <workItem from="1678361593487" duration="2545000" />
+      <workItem from="1678361593487" duration="4413000" />
     </task>
     <task id="LOCAL-00001" summary="adding .gitignore">
       <created>1678361479976</created>
@@ -113,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678363932873</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="updated README.md">
+      <created>1678367096790</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1678367096790</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,7 +166,8 @@
     <MESSAGE value="gradle config updates" />
     <MESSAGE value="added README.md" />
     <MESSAGE value="updated README.md &amp; added Formatted.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated README.md &amp; added Formatted.java" />
+    <MESSAGE value="updated README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated README.md" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

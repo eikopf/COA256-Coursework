@@ -65,13 +65,11 @@ public class Audiobook extends AbstractBook implements Formatted{
         }
     }
 
-    @Override
-    public Class<? extends Enum> getFormatEnum() {
+    public static Class<? extends Enum> getFormatEnum() {
         return Format.class;
     }
 
-    @Override
-    public Enum<?> getFormatString(String format) {
+    public static Enum<?> getFormatString(String format) {
         return Format.toFormat(format);
     }
 }
