@@ -39,3 +39,13 @@ shadow {
 
 }
 
+application {
+    mainClass.set("com.example.Main")
+}
+
+tasks.shadowJar {
+    archiveBaseName.set("F214180-Coursework")
+}
+
+
+
