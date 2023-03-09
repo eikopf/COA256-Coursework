@@ -46,6 +46,3 @@ application {
 tasks.shadowJar {
     archiveBaseName.set("F214180-Coursework")
 }
-
-
-

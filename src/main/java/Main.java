@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.io.File;
+import java.util.Objects;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,22 +11,18 @@ public class Main {
                 new HashSet<>()
         );
 
-        // "src/main/resources/datafiles/Stock.txt"
-        // "src/main/resources/datafiles/UserAccounts.txt"
-
-
-
         try {
+            // solution found here (https://stackoverflow.com/a/70864141)
             // construct input streams over the files
-            InputStream stockFileStream = Main.class.getResource("/datafiles/Stock.txt").openStream();
-            InputStream userAccountsFileStream = Main.class.getResource("/datafiles/UserAccounts.txt").openStream();
+            InputStream stockFileStream = Objects.requireNonNull(
+                    Main.class.getResource("/datafiles/Stock.txt")
+            ).openStream();
+            InputStream userAccountsFileStream = Objects.requireNonNull(
+                    Main.class.getResource("/datafiles/UserAccounts.txt")
+            ).openStream();
 
             manager.initialize(stockFileStream, userAccountsFileStream);
-        }
-        catch (AbstractBook.MalformedBookCharacteristicException e) {
-            throw new RuntimeException(e);
-        }
-        catch (IOException e) {
+        } catch (AbstractBook.MalformedBookCharacteristicException | IOException | NullPointerException e) {
             throw new RuntimeException(e);
         }
 
