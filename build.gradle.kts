@@ -141,7 +141,6 @@ tasks.register("buildRelease") {
                 "zip",
                 "-ur",
                 "./build/distributions/F214180-Coursework-$version.zip",
-                "./src",
                 "./gradle" // necessary for ./gradlew build
             )
         }
