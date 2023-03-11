@@ -92,7 +92,8 @@ tasks.register("buildSubmission") {
                 "zip",
                 "-ur",
                 "./build/distributions/F214180-Coursework-$version.zip",
-                "./src"
+                "./src",
+                "./gradle" // necessary for gradleless build
                 )
         }
 
@@ -117,10 +118,63 @@ tasks.register("buildSubmission") {
             workingDir("$projectDir")
             commandLine(
                 "zip",
-                "-u",
+                "-uj",
                 "./build/distributions/F214180-Coursework-$version.zip",
                 "./build/libs/F214180-Coursework-$version-all.jar"
             )
         }
     }
+}
+
+tasks.register("buildRelease") {
+    dependsOn("shadowJar")
+    dependsOn("test")
+    dependsOn("distZip")
+    tasks.findByName("shadowJar")?.mustRunAfter("test")
+    tasks.findByName("distZip")!!.mustRunAfter("shadowJar")
+
+    doLast {
+        // add the source files into the zip
+        exec {
+            workingDir("$projectDir")
+            commandLine(
+                "zip",
+                "-ur",
+                "./build/distributions/F214180-Coursework-$version.zip",
+                "./src",
+                "./gradle" // necessary for ./gradlew build
+            )
+        }
+
+        // add other project files into the zip
+        exec {
+            workingDir("$projectDir")
+            commandLine(
+                "zip",
+                "-u",
+                "./build/distributions/F214180-Coursework-$version.zip",
+                "build.gradle.kts",
+                "gradlew",
+                "gradlew.bat",
+                "README.md",
+                "settings.gradle.kts"
+            )
+        }
+
+        // add the fat jar into the zip
+        exec {
+            workingDir("$projectDir")
+            commandLine(
+                "zip",
+                "-uj",
+                "./build/distributions/F214180-Coursework-$version.zip",
+                "./build/libs/F214180-Coursework-$version-all.jar"
+            )
+        }
+    }
+}
+
+// settings for the gradle wrapper task
+tasks.wrapper {
+    distributionType = Wrapper.DistributionType.ALL
 }
