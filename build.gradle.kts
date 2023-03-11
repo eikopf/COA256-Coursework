@@ -17,7 +17,7 @@ plugins {
 }
 
 group = "org.example"
-version = "1.0-SNAPSHOT"
+version = "0.1-SNAPSHOT"
 
 // this will basically only ever say mavenCentral()
 repositories {
@@ -63,6 +63,8 @@ application {
 // distribution configurations
 distributions {
     main {
+        distributionBaseName.set("F214180-Coursework")
+
         contents {
             from("{$projectDir()}")
         }
@@ -75,10 +77,50 @@ tasks.shadowJar {
 }
 
 // custom task to finalize build
-tasks.register("build submission") {
+tasks.register("buildSubmission") {
     dependsOn("shadowJar")
     dependsOn("test")
     dependsOn("distZip")
     tasks.findByName("shadowJar")?.mustRunAfter("test")
     tasks.findByName("distZip")!!.mustRunAfter("shadowJar")
+
+    doLast {
+        // add the source files into the zip
+        exec {
+            workingDir("$projectDir")
+            commandLine(
+                "zip",
+                "-ur",
+                "./build/distributions/F214180-Coursework-$version.zip",
+                "./src"
+                )
+        }
+
+        // add other project files into the zip
+        exec {
+            workingDir("$projectDir")
+            commandLine(
+                "zip",
+                "-u",
+                "./build/distributions/F214180-Coursework-$version.zip",
+                ".project",
+                "build.gradle.kts",
+                "gradlew",
+                "gradlew.bat",
+                "README.md",
+                "settings.gradle.kts"
+            )
+        }
+
+        // add the fat jar into the zip
+        exec {
+            workingDir("$projectDir")
+            commandLine(
+                "zip",
+                "-u",
+                "./build/distributions/F214180-Coursework-$version.zip",
+                "./build/libs/F214180-Coursework-$version-all.jar"
+            )
+        }
+    }
 }
