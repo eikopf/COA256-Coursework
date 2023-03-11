@@ -6,6 +6,9 @@ plugins {
     // configurations for application usage
     id("application")
 
+    // adds tasks to create distributions
+    id("distribution")
+
     // GUI plugin for java
     id("org.openjfx.javafxplugin") version "0.0.13"
 
@@ -57,7 +60,25 @@ application {
     mainClass.set("Main")
 }
 
+// distribution configurations
+distributions {
+    main {
+        contents {
+            from("{$projectDir()}")
+        }
+    }
+}
+
 // configurations for the shadowJar task
 tasks.shadowJar {
     archiveBaseName.set("F214180-Coursework")
+}
+
+// custom task to finalize build
+tasks.register("build submission") {
+    dependsOn("shadowJar")
+    dependsOn("test")
+    dependsOn("distZip")
+    tasks.findByName("shadowJar")?.mustRunAfter("test")
+    tasks.findByName("distZip")!!.mustRunAfter("shadowJar")
 }
