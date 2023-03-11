@@ -78,6 +78,18 @@ tasks.shadowJar {
 
 // custom task to finalize build
 tasks.register("buildSubmission") {
+
+    // local distribution configuration
+    distributions {
+        main {
+            distributionBaseName.set("F214180-Coursework-Submission")
+
+            contents {
+                from("{$projectDir()}")
+            }
+        }
+    }
+
     dependsOn("shadowJar")
     dependsOn("test")
     dependsOn("distZip")
@@ -91,9 +103,9 @@ tasks.register("buildSubmission") {
             commandLine(
                 "zip",
                 "-ur",
-                "./build/distributions/F214180-Coursework-$version.zip",
+                "./build/distributions/F214180-Coursework-Submission-$version.zip",
                 "./src",
-                "./gradle" // necessary for gradleless build
+                "./gradle" // necessary for ./gradlew build
                 )
         }
 
@@ -103,7 +115,7 @@ tasks.register("buildSubmission") {
             commandLine(
                 "zip",
                 "-u",
-                "./build/distributions/F214180-Coursework-$version.zip",
+                "./build/distributions/F214180-Coursework-Submission-$version.zip",
                 ".project",
                 "build.gradle.kts",
                 "gradlew",
@@ -119,7 +131,7 @@ tasks.register("buildSubmission") {
             commandLine(
                 "zip",
                 "-uj",
-                "./build/distributions/F214180-Coursework-$version.zip",
+                "./build/distributions/F214180-Coursework-Submission-$version.zip",
                 "./build/libs/F214180-Coursework-$version-all.jar"
             )
         }
@@ -127,6 +139,18 @@ tasks.register("buildSubmission") {
 }
 
 tasks.register("buildRelease") {
+
+    // local distribution configuration
+    distributions {
+        main {
+            distributionBaseName.set("F214180-Coursework-Release")
+
+            contents {
+                from("{$projectDir()}")
+            }
+        }
+    }
+
     dependsOn("shadowJar")
     dependsOn("test")
     dependsOn("distZip")
@@ -140,7 +164,7 @@ tasks.register("buildRelease") {
             commandLine(
                 "zip",
                 "-ur",
-                "./build/distributions/F214180-Coursework-$version.zip",
+                "./build/distributions/F214180-Coursework-Release-$version.zip",
                 "./gradle" // necessary for ./gradlew build
             )
         }
@@ -151,7 +175,7 @@ tasks.register("buildRelease") {
             commandLine(
                 "zip",
                 "-u",
-                "./build/distributions/F214180-Coursework-$version.zip",
+                "./build/distributions/F214180-Coursework-Release-$version.zip",
                 "build.gradle.kts",
                 "gradlew",
                 "gradlew.bat",
@@ -166,7 +190,7 @@ tasks.register("buildRelease") {
             commandLine(
                 "zip",
                 "-uj",
-                "./build/distributions/F214180-Coursework-$version.zip",
+                "./build/distributions/F214180-Coursework-Release-$version.zip",
                 "./build/libs/F214180-Coursework-$version-all.jar"
             )
         }
