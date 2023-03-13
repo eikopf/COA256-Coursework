@@ -22,11 +22,11 @@ public class BookshopManager {
         this.users = users;
     }
 
-    /*
+    /**
      * Attempts to read user and book data from disk
      * @throws AbstractBook.MalformedBookCharacteristicException
      */
-    void initialize(InputStream stockFileStream,
+    BookshopManager initialize(InputStream stockFileStream,
                     InputStream userAccountsFileStream) throws AbstractBook.MalformedBookCharacteristicException {
         try {
             // creates scanners over the datafiles
@@ -119,9 +119,10 @@ public class BookshopManager {
         } catch (ParseException e) {
             System.out.println("Failed to initialize: ParseException");
         }
+        return this;
     }
 
-    /*
+    /**
      * Adds a book to the system. Guarantees that duplicates will not exist.
      * @param book an AbstractBook
      * @param count the number of books to be added
@@ -136,8 +137,9 @@ public class BookshopManager {
         books.put(book, count);
     }
 
-    /*
+    /**
      * Adds a user to the system. Will silently fail if the user is already in the system
+     * TODO: should this silently fail?
      * @param user an AbstractUser
      */
     void addUser(AbstractUser user) {
