@@ -37,7 +37,7 @@ public class BookshopManager {
                 String[] components = stockScanner.nextLine().split(", ");
 
                 String barcode = components[0];
-                // the first component lists the type
+                // the component at index 1 lists the type
                 String title = components[2];
                 AbstractBook.Language language = AbstractBook.Language.toLanguage(components[3]);
                 AbstractBook.Genre genre = AbstractBook.Genre.toGenre(components[4]);

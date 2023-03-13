@@ -69,13 +69,6 @@ dependencies {
     implementation("org.openjfx:javafx-fxml:21-ea+5")
 }
 
-// java plugin configuration
-//java {
-//    toolchain {
-//        languageVersion.set(JavaLanguageVersion.of(17))
-//    }
-//}
-
 // enables JUnit testing
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
@@ -85,11 +78,6 @@ tasks.getByName<Test>("test") {
 javafx {
      modules("javafx.controls", "javafx.fxml")
 }
-
-// shadow configurations
-//shadow {
-//
-//}
 
 // application configurations
 application {
@@ -183,7 +171,6 @@ tasks.register("buildSubmission") {
         // compression commands are piped through powershell to use Powershell.Archive
         // docs: https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.archive/compress-archive?view=powershell-7.3
         else if (os == OS.WINDOWS) {
-            // TODO: work this shit out
 
             // add source to zip
             exec {
@@ -313,7 +300,7 @@ tasks.register("buildRelease") {
                             "-Path $projectDir\\gradle " +
                             "-Update " +
                             "-DestinationPath " +
-                            "$projectDir\\build\\distributions\\F214180-Coursework-Submission-$version.zip" +
+                            "$projectDir\\build\\distributions\\F214180-Coursework-Release-$version.zip" +
                             "\""
                 )
             }
@@ -336,7 +323,7 @@ tasks.register("buildRelease") {
                             "Compress-Archive " +
                             "-Update " +
                             "-DestinationPath " +
-                            "$projectDir\\build\\distributions\\F214180-Coursework-Submission-$version.zip\""
+                            "$projectDir\\build\\distributions\\F214180-Coursework-Release-$version.zip\""
                 )
             }
         }

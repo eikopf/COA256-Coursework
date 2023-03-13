@@ -3,11 +3,13 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
-public class Main {
+public class Main extends Application {
     public static void main(String[] args) {
         BookshopManager manager = new BookshopManager(
-                new HashMap<>(),
+                new HashMap<>(), // implicitly guarantees key uniqueness
                 new HashSet<>()
         );
 
@@ -33,5 +35,20 @@ public class Main {
         for (AbstractUser user : manager.users) {
             System.out.println(user);
         }
+
+        Application.launch(args);
+    }
+
+    /**
+     * @param primaryStage the primary stage for this application, onto which
+     * the application scene can be set.
+     * Applications may create other stages, if needed, but they will not be
+     * primary stages.
+     */
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("hello, world");
+        // other stuff
+        primaryStage.show();
     }
 }
