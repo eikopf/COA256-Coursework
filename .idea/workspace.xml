@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d99c245-dce9-4aae-8ec2-8429423a9553" name="Changes" comment="added windows build compatibility (needs to be tested)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BookshopManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BookshopManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="4d99c245-dce9-4aae-8ec2-8429423a9553" name="Changes" comment="push for windows parity" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -195,8 +190,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.COA256-Coursework-Gradle [run]" />
         <item itemvalue="Gradle.COA256-Coursework-Gradle [test]" />
+        <item itemvalue="Gradle.COA256-Coursework-Gradle [run]" />
         <item itemvalue="Gradle.COA256-Coursework-Gradle [buildSubmission]" />
         <item itemvalue="Gradle.COA256-Coursework-Gradle [buildRelease]" />
         <item itemvalue="Application.Main" />
@@ -215,7 +210,7 @@
       <workItem from="1678361593487" duration="6179000" />
       <workItem from="1678372266459" duration="5620000" />
       <workItem from="1678379202664" duration="22778000" />
-      <workItem from="1678703595816" duration="3565000" />
+      <workItem from="1678703595816" duration="3960000" />
     </task>
     <task id="LOCAL-00001" summary="adding .gitignore">
       <created>1678361479976</created>
@@ -357,7 +352,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678702135370</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="push for windows parity">
+      <created>1678708998452</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1678708998452</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -392,7 +394,8 @@
     <MESSAGE value="updated README.md" />
     <MESSAGE value="updated gradle tasks" />
     <MESSAGE value="added windows build compatibility (needs to be tested)" />
-    <option name="LAST_COMMIT_MESSAGE" value="added windows build compatibility (needs to be tested)" />
+    <MESSAGE value="push for windows parity" />
+    <option name="LAST_COMMIT_MESSAGE" value="push for windows parity" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
