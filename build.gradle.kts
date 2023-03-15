@@ -74,6 +74,11 @@ tasks.getByName<Test>("test") {
     useJUnitPlatform()
 }
 
+java {
+    setSourceCompatibility(1.8)
+    setTargetCompatibility(1.8)
+}
+
 // javafx configurations
 javafx {
     version = "19"

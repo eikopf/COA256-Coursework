@@ -48,7 +48,7 @@ public class BookshopManager {
                 // the last two components list misc. traits
 
                 switch (components[1]) {
-                    case "paperback" -> addBooks(new Paperback(
+                    case "paperback" : addBooks(new Paperback(
                             barcode,
                             title,
                             language,
@@ -57,9 +57,9 @@ public class BookshopManager {
                             retailPrice,
                             Integer.parseInt(components[8]),
                             Paperback.Condition.toCondition(components[9])
-                    ), stockQuantity);
+                    ), stockQuantity); break;
 
-                    case "audiobook" -> addBooks(new Audiobook(
+                    case "audiobook" : addBooks(new Audiobook(
                           barcode,
                           title,
                           language,
@@ -68,9 +68,9 @@ public class BookshopManager {
                           retailPrice,
                           Double.parseDouble(components[8]),
                           Audiobook.Format.toFormat(components[9])
-                    ), stockQuantity);
+                    ), stockQuantity); break;
 
-                    case "ebook" -> addBooks(new Ebook(
+                    case "ebook" : addBooks(new Ebook(
                             barcode,
                             title,
                             language,
@@ -79,9 +79,9 @@ public class BookshopManager {
                             retailPrice,
                             Integer.parseInt(components[8]),
                             Ebook.Format.toFormat(components[9])
-                    ), stockQuantity);
+                    ), stockQuantity); break;
 
-                    default -> throw new AbstractBook.MalformedBookCharacteristicException(components[1]);
+                    default : throw new AbstractBook.MalformedBookCharacteristicException(components[1]);
                 }
             } stockScanner.close();
 
@@ -99,21 +99,21 @@ public class BookshopManager {
                 // the last two components are misc. traits
 
                 switch (components[7]) {
-                    case "admin" -> addUser(new Admin(
+                    case "admin" : addUser(new Admin(
                             id,
                             username,
                             surname,
                             address
-                    ));
+                    )); break;
 
-                    case "customer" -> addUser(new Customer(
+                    case "customer" : addUser(new Customer(
                             id,
                             username,
                             surname,
                             address,
                             (int) Double.parseDouble(components[6]) * 100,
                             new HashMap<>()
-                    ));
+                    )); break;
                 }
             } userScanner.close();
         } catch (ParseException e) {

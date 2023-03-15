@@ -39,11 +39,11 @@ public abstract class AbstractBook {
          * @return an AbstractBook.Language
          */
         public static Language toLanguage(String language) throws EnumConstantNotPresentException {
-            return switch (language.toLowerCase()) {
-                case "english" -> Language.English;
-                case "french" -> Language.French;
-                default -> throw new EnumConstantNotPresentException(Language.class, language);
-            };
+            switch (language.toLowerCase()) {
+                case "english" : return Language.English;
+                case "french" : return Language.French;
+                default : throw new EnumConstantNotPresentException(Language.class, language);
+            }
         }
     }
 
@@ -62,13 +62,13 @@ public abstract class AbstractBook {
          * @return an AbstractBook.Genre
          */
         public static Genre toGenre(String genre) throws EnumConstantNotPresentException {
-            return switch (genre.toLowerCase()) {
-                case "politics" -> Genre.Politics;
-                case "computer science" -> Genre.ComputerScience;
-                case "business" -> Genre.Business;
-                case "biography" -> Genre.Biography;
-                default -> throw new EnumConstantNotPresentException(Genre.class, genre);
-            };
+            switch (genre.toLowerCase()) {
+                case "politics" : return Genre.Politics;
+                case "computer science" : return Genre.ComputerScience;
+                case "business" : return Genre.Business;
+                case "biography" : return Genre.Biography;
+                default : throw new EnumConstantNotPresentException(Genre.class, genre);
+            }
         }
     }
 
