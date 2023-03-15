@@ -56,12 +56,12 @@ public class Audiobook extends AbstractBook implements Formatted{
          * @return an appropriate constant from Audiobook.Format
          */
         public static Format toFormat(String format) throws EnumConstantNotPresentException{
-            switch (format.toLowerCase()) {
-                case "mp3" : return Format.MP3;
-                case "wma" : return Format.WMA;
-                case "aac" : return Format.AAC;
-                default : throw new EnumConstantNotPresentException(Format.class, format);
-            }
+            return switch (format.toLowerCase()) {
+                case "mp3" -> Format.MP3;
+                case "wma" -> Format.WMA;
+                case "aac" -> Format.AAC;
+                default -> throw new EnumConstantNotPresentException(Format.class, format);
+            };
         }
     }
 

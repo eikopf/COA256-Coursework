@@ -62,13 +62,13 @@ public abstract class AbstractBook {
          * @return an AbstractBook.Genre
          */
         public static Genre toGenre(String genre) throws EnumConstantNotPresentException {
-            switch (genre.toLowerCase()) {
-                case "politics" : return Genre.Politics;
-                case "computer science" : return Genre.ComputerScience;
-                case "business" : return Genre.Business;
-                case "biography" : return Genre.Biography;
-                default : throw new EnumConstantNotPresentException(Genre.class, genre);
-            }
+            return switch (genre.toLowerCase()) {
+                case "politics" -> Genre.Politics;
+                case "computer science" -> Genre.ComputerScience;
+                case "business" -> Genre.Business;
+                case "biography" -> Genre.Biography;
+                default -> throw new EnumConstantNotPresentException(Genre.class, genre);
+            };
         }
     }
 

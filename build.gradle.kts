@@ -77,6 +77,8 @@ tasks.getByName<Test>("test") {
 java {
     setSourceCompatibility(1.8)
     setTargetCompatibility(1.8)
+    sourceCompatibility = JavaVersion.VERSION_14
+    targetCompatibility = JavaVersion.VERSION_14
 }
 
 // javafx configurations
