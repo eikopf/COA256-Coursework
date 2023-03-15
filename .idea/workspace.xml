@@ -9,6 +9,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/AbstractBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AbstractBook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BookshopManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BookshopManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +44,18 @@
                 <item name="COA256-Coursework-Gradle" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="application" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="COA256-Coursework-Gradle" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="COA256-Coursework-Gradle" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="verification" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -83,8 +96,8 @@
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "configurable.group.appearance",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -362,14 +375,7 @@
       <option name="project" value="LOCAL" />
       <updated>1678894891006</updated>
     </task>
-    <task id="LOCAL-00025" summary="reverted to JDK 17 compatibility">
-      <created>1678897299894</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1678897299894</updated>
-    </task>
-    <option name="localTasksCounter" value="26" />
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -407,8 +413,7 @@
     <MESSAGE value="push for windows parity" />
     <MESSAGE value="added .project for eclipse compatibility" />
     <MESSAGE value="parity commit" />
-    <MESSAGE value="reverted to JDK 17 compatibility" />
-    <option name="LAST_COMMIT_MESSAGE" value="reverted to JDK 17 compatibility" />
+    <option name="LAST_COMMIT_MESSAGE" value="parity commit" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
