@@ -53,12 +53,12 @@ repositories {
 
 // this section provides specific locations for the build tool to search
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
     // https://mvnrepository.com/artifact/org.openjfx/javafx
-    implementation("org.openjfx:javafx:21-ea+5")
+    implementation("org.openjfx:javafx:19.0.2.1")
     // https://mvnrepository.com/artifact/org.openjfx/javafx-controls
-    implementation("org.openjfx:javafx-controls:21-ea+5")
+    implementation("org.openjfx:javafx-controls:19.0.2.1")
     // https://github.com/iAmGio/animated
     implementation("eu.iamgio:animated:0.7.0")
     // https://central.sonatype.com/artifact/org.kordamp.ikonli/ikonli-javafx/12.3.1
@@ -66,7 +66,7 @@ dependencies {
     //https://central.sonatype.com/artifact/org.kordamp.ikonli/ikonli-bootstrapicons-pack/12.3.1
     implementation("org.kordamp.ikonli:ikonli-bootstrapicons-pack:12.3.1")
     // https://mvnrepository.com/artifact/org.openjfx/javafx-fxml
-    implementation("org.openjfx:javafx-fxml:21-ea+5")
+    implementation("org.openjfx:javafx-fxml:19.0.2.1")
 }
 
 // enables JUnit testing
@@ -76,7 +76,8 @@ tasks.getByName<Test>("test") {
 
 // javafx configurations
 javafx {
-     modules("javafx.controls", "javafx.fxml")
+    version = "19"
+    modules("javafx.controls", "javafx.fxml")
 }
 
 // application configurations

@@ -11,7 +11,7 @@ and uses it to install the following plugins:
 
 | Plugin                                            | Justification                                    |
 |---------------------------------------------------|--------------------------------------------------|
-| [JavaFX](https://openjfx.io/)                     | A modern successor to Java's internal Swing API  |
+| [JavaFX 19](https://openjfx.io/)                  | A modern successor to Java's internal Swing API  |
 | [Shadow](https://github.com/johnrengelman/shadow) | Allows the creation of "fat" `.jar` files        |
 | [animated](https://github.com/iAmGio/animated)    | A library of Flutter-style animations for JavaFX |
 | [Ikonli](https://github.com/kordamp/ikonli)       | Provides access to the Bootstrap icon set        |

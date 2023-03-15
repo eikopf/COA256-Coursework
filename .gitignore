@@ -18,10 +18,7 @@ out/
 
 ### Eclipse ###
 .apt_generated
-.classpath
 .factorypath
-.project
-.settings
 .springBeans
 .sts4-cache
 bin/
@@ -40,3 +37,4 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/.idea/runConfigurations/COA256_Coursework_Gradle__run_.xml

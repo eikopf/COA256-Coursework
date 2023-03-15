@@ -36,6 +36,8 @@ public class Main extends Application {
             System.out.println(user);
         }
 
+        System.out.println(System.getProperty("javafx.runtime.version"));
+
         Application.launch(args);
     }
 
@@ -47,7 +49,7 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("hello, world");
+        primaryStage.setTitle("F214180 Coursework - Bookshop Management Tool");
         // other stuff
         primaryStage.show();
     }

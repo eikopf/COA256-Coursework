@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d99c245-dce9-4aae-8ec2-8429423a9553" name="Changes" comment="push for windows parity" />
+    <list default="true" id="4d99c245-dce9-4aae-8ec2-8429423a9553" name="Changes" comment="added .project for eclipse compatibility">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" afterPath="$PROJECT_DIR$/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -146,27 +152,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="COA256-Coursework-Gradle [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="run" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="COA256-Coursework-Gradle [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -188,10 +173,16 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Gradle.COA256-Coursework-Gradle [run]" />
+      <item itemvalue="Gradle.COA256-Coursework-Gradle [buildRelease]" />
+      <item itemvalue="Gradle.COA256-Coursework-Gradle [buildSubmission]" />
+      <item itemvalue="Gradle.COA256-Coursework-Gradle [test]" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.COA256-Coursework-Gradle [test]" />
-        <item itemvalue="Gradle.COA256-Coursework-Gradle [run]" />
         <item itemvalue="Gradle.COA256-Coursework-Gradle [buildSubmission]" />
         <item itemvalue="Gradle.COA256-Coursework-Gradle [buildRelease]" />
         <item itemvalue="Application.Main" />
@@ -210,7 +201,7 @@
       <workItem from="1678361593487" duration="6179000" />
       <workItem from="1678372266459" duration="5620000" />
       <workItem from="1678379202664" duration="22778000" />
-      <workItem from="1678703595816" duration="3960000" />
+      <workItem from="1678703595816" duration="7722000" />
     </task>
     <task id="LOCAL-00001" summary="adding .gitignore">
       <created>1678361479976</created>
@@ -359,7 +350,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678708998452</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="added .project for eclipse compatibility">
+      <created>1678709561312</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1678709561312</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -395,7 +393,8 @@
     <MESSAGE value="updated gradle tasks" />
     <MESSAGE value="added windows build compatibility (needs to be tested)" />
     <MESSAGE value="push for windows parity" />
-    <option name="LAST_COMMIT_MESSAGE" value="push for windows parity" />
+    <MESSAGE value="added .project for eclipse compatibility" />
+    <option name="LAST_COMMIT_MESSAGE" value="added .project for eclipse compatibility" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
