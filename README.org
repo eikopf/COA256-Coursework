@@ -8,8 +8,7 @@
 4. [[Resources]]
 
 ** Dependencies
-| Plugin    | Justification                                    |
-| ------    | -------------                                    |
+| Plugins   | Justification                                    |
 | [[https://openjfx.io/][JavaFX 19]] | A modern successor to Java's internal Swing API  |
 | [[https://github.com/johnrengelman/shadow][Shadow]]    | Allows the creation of "fat" ~.jar~ files        |
 | [[https://github.com/iAmGio/animated][animated]]  | A library of Flutter-style animations for JavaFX |
@@ -56,7 +55,7 @@ If you'd like the project as it was submitted, run the following command:
 
 This command will do the same as buildRelease, while also adding in the source files and some Eclipse compatibility files. Those are just there to ensure that when run in the target context (in Eclipse on Windows 10), no additional configuration is required.
 
-## Resources
+** Resources
 - [[https://jenkov/com/tutorials/javafx/index.html][jenkov.com]]
 - [[https://imperceptiblethoughts/com/shadow/][Shadow Documentation]]
 - [[https://stackoverflow.com/a/70864141][Stack Overflow: Configuring Shadow]]
