@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d99c245-dce9-4aae-8ec2-8429423a9553" name="Changes" comment="reverted to JDK 17 compatibility">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/LoginScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" afterPath="$PROJECT_DIR$/.project" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/AbstractBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AbstractBook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Audiobook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Audiobook.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BookshopManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BookshopManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,18 +49,6 @@
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="application" type="c8890929:TasksNode$1" />
               </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="COA256-Coursework-Gradle" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="other" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="COA256-Coursework-Gradle" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="verification" type="c8890929:TasksNode$1" />
-              </path>
             </expand>
             <select />
           </tree_state>
@@ -68,8 +60,12 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -89,6 +85,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -97,7 +94,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -107,13 +104,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Gradle.COA256-Coursework-Gradle [run]">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="COA256-Coursework-Gradle.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="COA256-Coursework-Gradle [buildRelease]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -133,6 +123,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="COA256-Coursework-Gradle [buildSubmission]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -154,6 +145,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="COA256-Coursework-Gradle [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -175,10 +167,10 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
       <item itemvalue="Gradle.COA256-Coursework-Gradle [run]" />
       <item itemvalue="Gradle.COA256-Coursework-Gradle [buildRelease]" />
       <item itemvalue="Gradle.COA256-Coursework-Gradle [buildSubmission]" />
@@ -189,7 +181,6 @@
         <item itemvalue="Gradle.COA256-Coursework-Gradle [test]" />
         <item itemvalue="Gradle.COA256-Coursework-Gradle [buildSubmission]" />
         <item itemvalue="Gradle.COA256-Coursework-Gradle [buildRelease]" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -206,6 +197,12 @@
       <workItem from="1678372266459" duration="5620000" />
       <workItem from="1678379202664" duration="22778000" />
       <workItem from="1678703595816" duration="9767000" />
+      <workItem from="1678964270804" duration="6364000" />
+      <workItem from="1679414624698" duration="3066000" />
+      <workItem from="1680367221027" duration="580000" />
+      <workItem from="1680456304543" duration="581000" />
+      <workItem from="1680458385686" duration="24000" />
+      <workItem from="1680458444746" duration="400000" />
     </task>
     <task id="LOCAL-00001" summary="adding .gitignore">
       <created>1678361479976</created>
@@ -413,7 +410,8 @@
     <MESSAGE value="push for windows parity" />
     <MESSAGE value="added .project for eclipse compatibility" />
     <MESSAGE value="parity commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="parity commit" />
+    <MESSAGE value="reverted to JDK 17 compatibility" />
+    <option name="LAST_COMMIT_MESSAGE" value="reverted to JDK 17 compatibility" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

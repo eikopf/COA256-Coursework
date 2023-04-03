@@ -1,10 +1,7 @@
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.io.File;
 
 /**
  * Represents and controls the bookshop system, including permissions.
@@ -14,12 +11,17 @@ import java.io.File;
  * to indicate that the request could not be fulfilled.
  */
 public class BookshopManager {
-    HashMap<AbstractBook, Integer> books;
-    HashSet<AbstractUser> users;
+    private HashMap<AbstractBook, Integer> books;
+    private HashSet<AbstractUser> users;
 
     public BookshopManager(HashMap<AbstractBook, Integer> books, HashSet<AbstractUser> users) {
         this.books = books;
         this.users = users;
+    }
+
+    public BookshopManager() {
+        this.books = new HashMap<>();
+        this.users = new HashSet<>();
     }
 
     /**
@@ -144,5 +146,13 @@ public class BookshopManager {
      */
     void addUser(AbstractUser user) {
         users.add(user);
+    }
+
+    public HashMap<AbstractBook, Integer> getBooks() {
+        return books;
+    }
+
+    public HashSet<AbstractUser> getUsers() {
+        return users;
     }
 }

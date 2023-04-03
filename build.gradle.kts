@@ -48,7 +48,7 @@ val os: OS = getOS()!! // double bang asserts that the value is not null
 
 // this will basically only ever say mavenCentral()
 repositories {
-    mavenCentral()
+    mavenCentral() // grabs resources from https://mvnrepository.com/
 }
 
 // this section provides specific locations for the build tool to search
@@ -74,16 +74,8 @@ tasks.getByName<Test>("test") {
     useJUnitPlatform()
 }
 
-//java {
-//    setSourceCompatibility(1.8)
-//    setTargetCompatibility(1.8)
-//    sourceCompatibility = JavaVersion.VERSION_14
-//    targetCompatibility = JavaVersion.VERSION_14
-//}
-
 // javafx configurations
 javafx {
-    version = "19"
     modules("javafx.controls", "javafx.fxml")
 }
 
@@ -112,7 +104,6 @@ tasks.shadowJar {
 // TODO: fix zipping behaviour on windows
 // i think it can be fixed with powershell functions?
 // some quick googling says that it was added in 2016
-// so an important question: what version of windows does hossein have?
 
 // custom task to finalize build
 tasks.register("buildSubmission") {

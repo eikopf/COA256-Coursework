@@ -50,7 +50,7 @@ public class Audiobook extends AbstractBook implements Formatted{
         WMA,
         AAC;
 
-        /*
+        /**
          * Converts a string to a reasonable equivalent value of Audiobook.Format
          * @param format a string
          * @return an appropriate constant from Audiobook.Format
