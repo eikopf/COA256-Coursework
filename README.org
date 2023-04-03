@@ -1,11 +1,12 @@
 #+title: Readme
+#+options: toc:1
 
 * COA256 Coursework
 
-1. [[Dependencies]]
-2. [[Project Overview]]
-3. [[Building from Source]]
-4. [[Resources]]
+1. [[file:README.org::Dependencies][Dependencies]]
+2. [[Project Overview][Project Overview]]
+3. [[Building from Source][Building from Source]]
+4. [[Resources][Resources]]
 
 ** Dependencies
 | Plugins   | Justification                                    |
