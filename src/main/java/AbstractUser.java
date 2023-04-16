@@ -12,6 +12,10 @@ public abstract class AbstractUser {
         this.address = address;
     }
 
+    public boolean isAdmin() {
+        return this.getClass().equals(Admin.class);
+    }
+
     public static class Address {
         int houseNumber;
         String postcode, city;
@@ -30,5 +34,23 @@ public abstract class AbstractUser {
                     ", city='" + city + '\'' +
                     '}';
         }
+    }
+
+    public String getLabel() {
+        return new StringBuilder(username)
+            .append(" (ID: ")
+            .append(id)
+            .append(")")
+            .toString();
+    }
+
+    public String getSubLabel() {
+        return new StringBuilder(surname)
+            .append(" @ ")
+            .append(address.city)
+            .append(" (")
+            .append(address.postcode)
+            .append(")")
+            .toString();
     }
 }

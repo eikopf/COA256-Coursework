@@ -1,0 +1,40 @@
+/*this css file is used during the LoginScene scene, to style primarily the list and its cells */
+
+.cell {
+    -fx-cell-size: 140;
+}
+
+.ikonli-font-icon {
+    -fx-icon-size: 60;
+}
+
+.left-vbox {
+    -fx-alignment: "center";
+    -fx-padding: 12;
+}
+
+.main-container {
+    -fx-alignment: "center";
+}
+
+.list-view .scroll-bar:vertical {
+    -fx-scale-x: 0;
+}
+
+.pane {
+    -fx-alignment: "top-center";
+}
+
+.list-view {
+    -fx-border-width: 0px;
+    -fx-padding: 0;
+    -fx-focus-color: transparent;
+}
+
+.list-cell:empty {
+    visibility:hidden;
+}
+
+.right-vbox {
+    -fx-alignment: "center-right";
+}

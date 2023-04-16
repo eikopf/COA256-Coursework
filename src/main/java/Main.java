@@ -2,12 +2,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
 import javafx.application.Application;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
+    // putting this object here runs the risk that it could be null when accessed
+    private static BookshopManager manager;
+    private static Stage primaryStage;
+
     public static void main(String[] args) {
-        BookshopManager manager = new BookshopManager();
+        manager = new BookshopManager();
 
         try {
             // solution found here (https://stackoverflow.com/a/70864141)
@@ -36,15 +40,24 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("F214180 Coursework - Bookshop Management Tool");
-        primaryStage.setWidth(800);
-        primaryStage.setHeight(600);
-        LoginScene scene = new LoginScene(new VBox());
+        primaryStage.setWidth(GUIConstants.WIDTH);
+        primaryStage.setHeight(GUIConstants.HEIGHT);
+        LoginScene scene = LoginScene.getLoginScene(manager);
         primaryStage.setScene(scene);
+        Main.primaryStage = primaryStage;
         primaryStage.show();
     }
 
     @Override
     public void stop() {
         System.out.println("stopping...");
+    }
+
+    public static Stage getPrimaryStage() {
+        return Main.primaryStage;
+    }
+
+    public static BookshopManager getBookshopManager() {
+        return Main.manager;
     }
 }
