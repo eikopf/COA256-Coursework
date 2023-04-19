@@ -63,8 +63,7 @@ dependencies {
     implementation("eu.iamgio:animated:0.7.0")
     // https://central.sonatype.com/artifact/org.kordamp.ikonli/ikonli-javafx/12.3.1
     implementation("org.kordamp.ikonli:ikonli-javafx:12.3.1")
-    //https://central.sonatype.com/artifact/org.kordamp.ikonli/ikonli-bootstrapicons-pack/12.3.1
-    implementation("org.kordamp.ikonli:ikonli-bootstrapicons-pack:12.3.1")
+
     implementation("org.kordamp.ikonli:ikonli-materialdesign2-pack:12.3.1")
     // https://mvnrepository.com/artifact/org.openjfx/javafx-fxml
     implementation("org.openjfx:javafx-fxml:19.0.2.1")

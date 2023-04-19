@@ -30,8 +30,8 @@ public class LoginCellFactory implements Callback<ListView<AbstractUser>, ListCe
                     VBox leftContainer = new VBox();
                     leftContainer.getStyleClass().addAll("box", "vbox", "left-vbox");
                     FontIcon userIcon = this.getItem().isAdmin()
-                        ? new FontIcon("bi-tools")
-                        : new FontIcon("bi-basket-fill");
+                        ? new FontIcon("mdi2t-tools")
+                        : new FontIcon("mdi2b-basket");
 
                     Label userText = this.getItem().isAdmin()
                         ? new Label("Admin")
