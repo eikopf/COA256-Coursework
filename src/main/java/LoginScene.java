@@ -24,7 +24,8 @@ public class LoginScene extends Scene {
 
         // switches on the specific key event that occurs
         switch (event.getCode()) {
-            default -> {}
+            default -> {
+            }
         }
     };
 
@@ -36,26 +37,27 @@ public class LoginScene extends Scene {
         // switches on the specific key event that occurs
         switch (event.getCode()) {
             case ENTER -> loadUserScene();
-            default -> {}
+            default -> {
+            }
         }
     };
 
     private static void loadUserScene() {
-       AbstractUser selectedUser = LoginScene.selectedUserModel.getSelectedItem();
+        AbstractUser selectedUser = LoginScene.selectedUserModel.getSelectedItem();
 
-       if (selectedUser.isAdmin()) {
-           Main.getPrimaryStage().setScene(AdminScene.getAdminScene(Main.getBookshopManager(),
-                                                                    (Admin) selectedUser));
-       } else {
-           Main.getPrimaryStage().setScene(CustomerScene.getCustomerScene(Main.getBookshopManager(),
-                                                                          (Customer) selectedUser));
-       }
+        if (selectedUser.isAdmin()) {
+            Main.getPrimaryStage().setScene(UserScene.getAdminScene(Main.getBookshopManager(),
+                    (Admin) selectedUser));
+        } else {
+            Main.getPrimaryStage().setScene(UserScene.getCustomerScene(Main.getBookshopManager(),
+                    (Customer) selectedUser));
+        }
     }
 
-   /**
-    * This comparator is broken out from the instantiation of the user list,
-    * to allow for it to be more easily adjusted.
-    */
+    /**
+     * This comparator is broken out from the instantiation of the user list,
+     * to allow for it to be more easily adjusted.
+     */
     private static Comparator<AbstractUser> userComparator = (a, b) -> {
         return a.id.compareTo(b.id);
     };
@@ -67,10 +69,11 @@ public class LoginScene extends Scene {
 
     }
 
-   /**
-    *  The {@link Scene} class provides no zero-parameter constructor, so this wrapper
-    *  ensures that every LoginScene has the same root node.
-    */
+    /**
+     * The {@link Scene} class provides no zero-parameter constructor, so this
+     * wrapper
+     * ensures that every LoginScene has the same root node.
+     */
     public static LoginScene getLoginScene(BookshopManager manager) {
         ObservableList<AbstractUser> users = FXCollections.observableArrayList(manager.getUsers());
         SortedList<AbstractUser> sortedUsers = new SortedList<>(users, userComparator);

@@ -1,0 +1,39 @@
+/* this css file is used during the CustomerScene scene */
+
+.ikonli-font-icon {
+    -fx-icon-size: 50;
+}
+
+.settings-icon {
+    -fx-icon-size: 50;
+}
+
+.add-icon {
+    -fx-icon-size: 50;
+}
+
+.searchbar-icon {
+    -fx-icon-size: 30;
+}
+
+.user-label {
+    -fx-padding: 0 120 0 40;
+}
+
+.hbox {
+    -fx-alignment: "center-left";
+}
+
+.label-container {
+    -fx-alignment: "center";
+}
+
+.list-view .scroll-bar {
+    -fx-scale-x: 0;
+}
+
+.list-view {
+    -fx-border-width: 0px;
+    -fx-padding: 0;
+    -fx-focus-color: transparent;
+}

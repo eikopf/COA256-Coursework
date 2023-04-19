@@ -48,16 +48,16 @@ public class Customer extends AbstractUser {
                 '}';
     }
 
-    void addBookToBasket(AbstractBook book) {
-        //TODO: to be implemented
+    public void addBookToBasket(AbstractBook book) {
+        basket.put(book, basket.getOrDefault(book, 0) + 1);
     }
 
     void removeBookFromBasket(AbstractBook book) {
-        //TODO: to be implemented
+        basket.remove(book);
     }
 
     void clearBasket() {
-        //TODO: to be implemented
+        basket.clear();
     }
 
     void purchase() {
