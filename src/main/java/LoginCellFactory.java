@@ -9,7 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
 /**
- * Provides factory methods to generate the cells in the Login scene's {@link ListView}
+ * Provides a factory method to generate the cells in the Login scene's {@link ListView}
  */
 public class LoginCellFactory implements Callback<ListView<AbstractUser>, ListCell<AbstractUser>> {
 

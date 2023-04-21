@@ -37,3 +37,7 @@
     -fx-padding: 0;
     -fx-focus-color: transparent;
 }
+
+.book-icon {
+    -fx-icon-size: 50;
+}

@@ -24,17 +24,18 @@ public class BookSearch extends VBox {
     private StringProperty currentQuery, previousQuery;
 
     private static Comparator<AbstractBook> defaultSearchResultComparator = (a, b) -> {
-        return b.barcode.compareTo(a.barcode);
+        return a.barcode.compareTo(b.barcode);
     };
 
-    private static Comparator<AbstractBook> levenshteinSearchResultComparator = (a, b) -> {
-        return levenshtein(a.title.toLowerCase(), b.title.toLowerCase());
+    private Comparator<AbstractBook> levenshteinSearchResultComparator = (a, b) -> {
+        String query = this.currentQuery.get();
+        return levenshtein(query, a.title.toLowerCase()) - levenshtein(query, b.title.toLowerCase());
     };
 
     /**
      * Computes the Levenshtein metric between two strings.
      */
-    public static int levenshtein(String a, String b) {
+    private static int levenshtein(String a, String b) {
         if (b.length() == 0) {
             return a.length();
         } else if (a.length() == 0) {
@@ -98,20 +99,30 @@ public class BookSearch extends VBox {
     }
 
     private void constructSearchResults(BookshopManager manager) {
+        // construct data
         ObservableList<AbstractBook> books = FXCollections.observableArrayList(manager.getBooks().keySet());
+
+        // filter data by search term
+        // TODO: fix filtering behaviour with custom cell factory
         FilteredList<AbstractBook> filteredBooks = new FilteredList<>(books, p -> true);
+
+        // sort data by search term
+        SortedList<AbstractBook> sortedBooks = new SortedList<>(filteredBooks, defaultSearchResultComparator);
+
+        // bind changes in results to changes in query
         this.currentQuery.addListener((observable, oldVal, newVal) -> {
                 filteredBooks.setPredicate(book -> book.title.toLowerCase().contains(newVal.toLowerCase()));
+                if (!newVal.isEmpty()) {
+                    sortedBooks.setComparator(levenshteinSearchResultComparator);
+                } else {
+                    sortedBooks.setComparator(defaultSearchResultComparator);
+                }
             });
 
-        SortedList<AbstractBook> sortedBooks = new SortedList<>(filteredBooks, defaultSearchResultComparator);
-        if (!this.currentQuery.isEmpty().get()) {
-            sortedBooks.setComparator(levenshteinSearchResultComparator);
-        }
-
-
+        // construct results GUI elemnet
         ListView<AbstractBook> searchResults = new ListView<>(sortedBooks);
         searchResults.getStyleClass().addAll("list-view", "search-results");
+        searchResults.setCellFactory(new BookCellFactory(manager));
         VBox.setVgrow(searchResults, Priority.ALWAYS);
 
         this.getChildren().add(searchResults);
