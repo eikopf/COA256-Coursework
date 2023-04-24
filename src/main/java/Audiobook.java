@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -19,7 +20,7 @@ public class Audiobook extends AbstractBook implements Formatted{
                      String title,
                      AbstractBook.Language language,
                      AbstractBook.Genre genre,
-                     Date releaseDate,
+                     LocalDate releaseDate,
                      double retailPrice,
                      double length,
                      Format format) {

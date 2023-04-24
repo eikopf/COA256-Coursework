@@ -65,7 +65,8 @@ public class LoginCellFactory implements Callback<ListView<AbstractUser>, ListCe
                     // cell is first clicked on.
                     this.setGraphic(mainContainer);
                 } else {
-                    setText("");
+                    setText(null);
+                    setGraphic(null);
                 }
             };
         };

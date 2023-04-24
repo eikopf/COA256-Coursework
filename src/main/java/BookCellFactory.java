@@ -1,5 +1,8 @@
+import java.time.LocalDate;
+
 import org.kordamp.ikonli.javafx.FontIcon;
 
+import javafx.collections.transformation.SortedList;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -11,51 +14,16 @@ import javafx.util.Callback;
 public class BookCellFactory implements Callback<ListView<AbstractBook>, ListCell<AbstractBook>> {
 
     BookshopManager manager;
+    SortedList<AbstractBook> items;
 
-    public BookCellFactory(BookshopManager manager) {
+    public BookCellFactory(BookshopManager manager, SortedList<AbstractBook> items) {
         super();
         this.manager = manager;
+        this.items = items;
     }
 
-    @Override
-    public ListCell<AbstractBook> call(ListView<AbstractBook> param) {
-        return new ListCell<>() {
-            @Override
-            protected void updateItem(AbstractBook item, boolean empty) {
-                super.updateItem(item, empty);
-                this.getStyleClass().add("list-cell");
-
-                if (!empty && item != null) {
-
-                    AbstractBook book = this.getItem();
-
-                    HBox root = new HBox();
-                    root.getStyleClass().addAll("box", "hbox", "book-cell-root");
-
-                    // book icon (breaks over type)
-                    FontIcon bookIcon;
-                    if (book.getClass() == Paperback.class) {
-                        bookIcon = new FontIcon("mdi2b-book");
-                    } else if (book.getClass() == Ebook.class) {
-                        bookIcon = new FontIcon("mdi2b-book-cog");
-                    } else if (book.getClass() == Audiobook.class) {
-                        bookIcon = new FontIcon("mdi2b-book-music");
-                    } else {
-                        bookIcon = new FontIcon("mdi2f-file-question");
-                    }
-                    bookIcon.getStyleClass().addAll("icon", "book-icon");
-
-                    VBox textContainer = new VBox();
-                    textContainer.getStyleClass().addAll("box", "vbox", "book-cell-text-container");
-                    HBox.setHgrow(textContainer, Priority.ALWAYS);
-
-                    Label titleLabel = new Label(book.title);
-                    titleLabel.getStyleClass().addAll("text", "label", "title-label", "book-cell-text");
-                    titleLabel.setFont(GUIConstants.montserrat20);
-
-                    StringBuilder subtitleBuilder = new StringBuilder(book.barcode)
-                            .append(", ")
-                            .append(book.language.toString())
+    private static String getMajorSubtitle(AbstractBook book) {
+        StringBuilder subtitleBuilder = new StringBuilder(book.language.toString())
                             .append(", ")
                             .append(book.genre)
                             .append(", ")
@@ -83,8 +51,55 @@ public class BookCellFactory implements Callback<ListView<AbstractBook>, ListCel
                         subtitleBuilder.insert(0, "Unknown, ");
                     }
 
-                    Label subtitleLabel = new Label(subtitleBuilder.toString());
-                    subtitleBuilder = null; // suggestively gc the builder
+            return subtitleBuilder.toString();
+    }
+
+    private static String getTitle(AbstractBook book) {
+        return new StringBuilder(book.title)
+            .append(" (")
+            .append(book.barcode)
+            .append(")")
+            .toString();
+    }
+
+    @Override
+    public ListCell<AbstractBook> call(ListView<AbstractBook> param) {
+        return new ListCell<>() {
+            @Override
+            protected void updateItem(AbstractBook item, boolean empty) {
+                super.updateItem(item, empty);
+                this.getStyleClass().add("list-cell");
+
+                if (!empty && item != null && items.contains(item)) {
+
+                    AbstractBook book = this.getItem();
+                    int stock = manager.getBooks().get(book);
+
+                    HBox root = new HBox();
+                    root.getStyleClass().addAll("box", "hbox", "book-cell-root");
+
+                    // book icon (breaks over type)
+                    FontIcon bookIcon;
+                    if (book.getClass() == Paperback.class) {
+                        bookIcon = new FontIcon("mdi2b-book");
+                    } else if (book.getClass() == Ebook.class) {
+                        bookIcon = new FontIcon("mdi2b-book-cog");
+                    } else if (book.getClass() == Audiobook.class) {
+                        bookIcon = new FontIcon("mdi2b-book-music");
+                    } else {
+                        bookIcon = new FontIcon("mdi2f-file-question");
+                    }
+                    bookIcon.getStyleClass().addAll("icon", "book-icon");
+
+                    VBox textContainer = new VBox();
+                    textContainer.getStyleClass().addAll("box", "vbox", "book-cell-text-container");
+                    HBox.setHgrow(textContainer, Priority.ALWAYS);
+
+                    Label titleLabel = new Label(getTitle(book));
+                    titleLabel.getStyleClass().addAll("text", "label", "title-label", "book-cell-text");
+                    titleLabel.setFont(GUIConstants.montserrat20);
+
+                    Label subtitleLabel = new Label(getMajorSubtitle(book));
                     subtitleLabel.getStyleClass().addAll("text", "label", "subtitle-label", "book-cell-text");
                     subtitleLabel.setFont(GUIConstants.montserrat12);
 
@@ -97,7 +112,8 @@ public class BookCellFactory implements Callback<ListView<AbstractBook>, ListCel
                     root.getChildren().addAll(bookIcon, textContainer);
                     this.setGraphic(root);
                 } else {
-                    setText("");
+                    setText(null);
+                    setGraphic(null);
                 }
             }
         };

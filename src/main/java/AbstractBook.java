@@ -1,4 +1,4 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * Represents an instance of a book in the system.
@@ -9,14 +9,14 @@ public abstract class AbstractBook {
     String title;
     Language language;
     Genre genre;
-    Date releaseDate;
+    LocalDate releaseDate;
     double retailPrice;
 
     public AbstractBook(String barcode,
                         String title,
                         Language language,
                         Genre genre,
-                        Date releaseDate,
+                        LocalDate releaseDate,
                         double retailPrice) {
         this.barcode = barcode;
         this.title = title;

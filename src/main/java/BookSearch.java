@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -22,6 +23,7 @@ import javafx.scene.layout.VBox;
 public class BookSearch extends VBox {
 
     private StringProperty currentQuery, previousQuery;
+    private SelectionModel<AbstractBook> selectionModel;
 
     private static Comparator<AbstractBook> defaultSearchResultComparator = (a, b) -> {
         return a.barcode.compareTo(b.barcode);
@@ -74,6 +76,10 @@ public class BookSearch extends VBox {
         return root;
     }
 
+    public SelectionModel<AbstractBook> getSelectionModel() {
+        return this.selectionModel;
+    }
+
     private void constructSearchBar() {
         HBox searchBar = new HBox();
         searchBar.setSpacing(10);
@@ -86,9 +92,9 @@ public class BookSearch extends VBox {
         searchField.setPromptText("Search for a book here!");
         searchField.getStyleClass().addAll("text-field", "search-field", "text");
         searchField.textProperty().addListener((observable, oldVal, newVal) -> {
-                this.currentQuery.setValue(newVal);
-                this.previousQuery.setValue(oldVal);
-            });
+            this.currentQuery.setValue(newVal);
+            this.previousQuery.setValue(oldVal);
+        });
         HBox.setHgrow(searchField, Priority.ALWAYS);
 
         FontIcon optionsIcon = new FontIcon("mdi2d-dots-horizontal-circle");
@@ -103,28 +109,32 @@ public class BookSearch extends VBox {
         ObservableList<AbstractBook> books = FXCollections.observableArrayList(manager.getBooks().keySet());
 
         // filter data by search term
-        // TODO: fix filtering behaviour with custom cell factory
         FilteredList<AbstractBook> filteredBooks = new FilteredList<>(books, p -> true);
+
+        // bind changes in results to changes in query
+        this.currentQuery.addListener((observable, oldVal, newVal) -> {
+            filteredBooks.setPredicate(book -> book.title.toLowerCase().contains(currentQuery.get().toLowerCase()));
+        });
 
         // sort data by search term
         SortedList<AbstractBook> sortedBooks = new SortedList<>(filteredBooks, defaultSearchResultComparator);
 
         // bind changes in results to changes in query
         this.currentQuery.addListener((observable, oldVal, newVal) -> {
-                filteredBooks.setPredicate(book -> book.title.toLowerCase().contains(newVal.toLowerCase()));
-                if (!newVal.isEmpty()) {
-                    sortedBooks.setComparator(levenshteinSearchResultComparator);
-                } else {
-                    sortedBooks.setComparator(defaultSearchResultComparator);
-                }
-            });
+            if (!newVal.isEmpty()) {
+                sortedBooks.setComparator(levenshteinSearchResultComparator);
+            } else {
+                sortedBooks.setComparator(defaultSearchResultComparator);
+            }
+        });
 
         // construct results GUI elemnet
         ListView<AbstractBook> searchResults = new ListView<>(sortedBooks);
         searchResults.getStyleClass().addAll("list-view", "search-results");
-        searchResults.setCellFactory(new BookCellFactory(manager));
+        searchResults.setCellFactory(new BookCellFactory(manager, sortedBooks));
         VBox.setVgrow(searchResults, Priority.ALWAYS);
 
+        this.selectionModel = searchResults.getSelectionModel();
         this.getChildren().add(searchResults);
     }
 }
