@@ -1,7 +1,9 @@
 import java.net.URL;
 
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
 public class UserScene<T extends AbstractUser> extends Scene {
@@ -9,16 +11,28 @@ public class UserScene<T extends AbstractUser> extends Scene {
     private T user;
     private static final URL styleSheetAddress = Main.class.getResource("css/user-scene.css");
 
+    private static EventHandler<KeyEvent> keyReleaseHandler = event -> {
+        switch (event.getCode()) {
+            case ESCAPE -> loadLoginScene();
+            default -> {}
+        }
+    };
+
     private UserScene(Parent root, T user) {
         super(root);
         this.user = user;
+        addEventHandler(KeyEvent.KEY_RELEASED, keyReleaseHandler);
+    }
+
+    private static void loadLoginScene() {
+        Main.getPrimaryStage().setScene(LoginScene.getLoginScene(Main.getBookshopManager()));
     }
 
     public static UserScene<Customer> getCustomerScene(BookshopManager manager, Customer customer) {
         VBox root = new VBox();
         root.setSpacing(8);
         root.getChildren().addAll(TopBar.getCustomerTopBar(customer),
-                                  BookSearch.getBookSearch(manager));
+                                  BookSearch.getBookSearch(manager, customer));
 
         UserScene<Customer> scene = new UserScene<Customer>(root, customer);
         scene.getStylesheets().add(styleSheetAddress.toExternalForm());
@@ -30,7 +44,7 @@ public class UserScene<T extends AbstractUser> extends Scene {
         VBox root = new VBox();
         root.setSpacing(8);
         root.getChildren().addAll(TopBar.getAdminTopBar(admin),
-                                  BookSearch.getBookSearch(manager));
+                                  BookSearch.getBookSearch(manager, admin));
 
         UserScene<Admin> scene = new UserScene<Admin>(root, admin);
         scene.getStylesheets().add(styleSheetAddress.toExternalForm());

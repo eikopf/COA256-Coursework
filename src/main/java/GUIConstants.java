@@ -21,8 +21,10 @@ public final class GUIConstants {
 
     public static final Font montserrat20 = Font.loadFont(getFont("montserrat/Montserrat-Regular.ttf"), 20);
     public static final Font montserrat12 = Font.loadFont(getFont("montserrat/Montserrat-Regular.ttf"), 12);
+    public static final Font montserrat8 = Font.loadFont(getFont("montserrat/Montserrat-Regular.ttf"), 8);
     public static final Font montserrat20Bold = Font.loadFont(getFont("montserrat/Montserrat-Bold.ttf"), 20);
     public static final Font montserrat25Bold = Font.loadFont(getFont("montserrat/Montserrat-Bold.ttf"), 25);
+    public static final Font montserrat12Italic = Font.loadFont(getFont("montserrat/Montserrat-Italic.ttf"), 12);
 
     // WINDOW CONSTANTS
     public static final int WIDTH = 800;

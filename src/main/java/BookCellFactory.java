@@ -1,5 +1,3 @@
-import java.time.LocalDate;
-
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import javafx.collections.transformation.SortedList;
@@ -14,52 +12,63 @@ import javafx.util.Callback;
 public class BookCellFactory implements Callback<ListView<AbstractBook>, ListCell<AbstractBook>> {
 
     BookshopManager manager;
+    AbstractUser user;
     SortedList<AbstractBook> items;
 
-    public BookCellFactory(BookshopManager manager, SortedList<AbstractBook> items) {
+    public BookCellFactory(BookshopManager manager, SortedList<AbstractBook> items, AbstractUser user) {
         super();
         this.manager = manager;
         this.items = items;
+        this.user = user;
     }
 
     private static String getMajorSubtitle(AbstractBook book) {
-        StringBuilder subtitleBuilder = new StringBuilder(book.language.toString())
-                            .append(", ")
-                            .append(book.genre)
-                            .append(", ")
-                            .append(book.releaseDate)
-                            .append(", ");
+        StringBuilder builder = new StringBuilder();
 
-                    // add subtype-specific details
-                    if (book.getClass() == Paperback.class) {
-                        subtitleBuilder.insert(0, "Paperback, ")
-                            .append(((Paperback) book).pages)
-                            .append(" pages, ")
-                            .append(((Paperback) book).condition);
-                    } else if (book.getClass() == Ebook.class) {
-                        subtitleBuilder.insert(0, "Ebook, ")
-                            .append(((Ebook) book).pages)
-                            .append(" pages, ")
-                            .append(((Ebook) book).format);
-                    } else if (book.getClass() == Audiobook.class) {
-                        subtitleBuilder.insert(0, "Audiobook, ")
-                            .append(((Audiobook) book).format)
-                            .append(", ")
-                            .append(((Audiobook) book).length)
-                            .append(" hrs");
-                    } else {
-                        subtitleBuilder.insert(0, "Unknown, ");
-                    }
+        if (book.getClass() == Paperback.class) {
+            builder.append("Paperback")
+                    .append(", ")
+                    .append(((Paperback) book).condition)
+                    .append(", ")
+                    .append(((Paperback) book).pages)
+                    .append(" pages");
+        } else if (book.getClass() == Ebook.class) {
+            builder.append("Ebook")
+                    .append(", ")
+                    .append(((Ebook) book).format)
+                    .append(", ")
+                    .append(((Ebook) book).pages)
+                    .append(" pages");
+        } else if (book.getClass() == Audiobook.class) {
+            builder.append("Audiobook")
+                    .append(", ")
+                    .append(((Audiobook) book).format)
+                    .append(", ")
+                    .append(((Audiobook) book).length)
+                    .append(" hours");
+        } else {
+            builder.append("Unknown Type");
+        }
 
-            return subtitleBuilder.toString();
+        return builder.toString();
+    }
+
+    private static String getMinorSubtitle(AbstractBook book) {
+        return new StringBuilder(book.language.toString())
+                .append(", ")
+                .append(book.genre)
+                .append(", ")
+                .append("Released ")
+                .append(book.releaseDate)
+                .toString();
     }
 
     private static String getTitle(AbstractBook book) {
         return new StringBuilder(book.title)
-            .append(" (")
-            .append(book.barcode)
-            .append(")")
-            .toString();
+                .append(" (")
+                .append(book.barcode)
+                .append(")")
+                .toString();
     }
 
     @Override
@@ -77,6 +86,7 @@ public class BookCellFactory implements Callback<ListView<AbstractBook>, ListCel
 
                     HBox root = new HBox();
                     root.getStyleClass().addAll("box", "hbox", "book-cell-root");
+                    root.setSpacing(8);
 
                     // book icon (breaks over type)
                     FontIcon bookIcon;
@@ -99,18 +109,39 @@ public class BookCellFactory implements Callback<ListView<AbstractBook>, ListCel
                     titleLabel.getStyleClass().addAll("text", "label", "title-label", "book-cell-text");
                     titleLabel.setFont(GUIConstants.montserrat20);
 
-                    Label subtitleLabel = new Label(getMajorSubtitle(book));
-                    subtitleLabel.getStyleClass().addAll("text", "label", "subtitle-label", "book-cell-text");
-                    subtitleLabel.setFont(GUIConstants.montserrat12);
+                    Label majorSubtitleLabel = new Label(getMajorSubtitle(book));
+                    majorSubtitleLabel.getStyleClass().addAll("text", "label", "subtitle-label", "book-cell-text");
+                    majorSubtitleLabel.setFont(GUIConstants.montserrat12);
 
-                    textContainer.getChildren().addAll(titleLabel, subtitleLabel);
+                    Label minorSubtitleLabel = new Label(getMinorSubtitle(book));
+                    minorSubtitleLabel.getStyleClass().addAll("text", "label", "subtitle-label", "book-cell-text");
+                    minorSubtitleLabel.setFont(GUIConstants.montserrat12);
 
-                    // TODO: add stock count (and bind it to the model)
-                    // TODO: add retail price
-                    // TODO: add "add-to-basket" button (not included for admins)
+                    textContainer.getChildren().addAll(titleLabel, majorSubtitleLabel, minorSubtitleLabel);
 
-                    root.getChildren().addAll(bookIcon, textContainer);
+                    VBox valueContainer = new VBox();
+                    valueContainer.getStyleClass().addAll("box", "vbox", "book-cell-value-container");
+
+                    Label stockCountLabel = new Label("Remaining: " + Integer.toString(stock));
+                    stockCountLabel.setFont(GUIConstants.montserrat12);
+                    stockCountLabel.getStyleClass().addAll("text", "label", "stock-label", "book-cell-text");
+
+                    Label retailPriceLabel = new Label("Price: " + Double.toString(book.retailPrice));
+                    retailPriceLabel.setFont(GUIConstants.montserrat12);
+                    retailPriceLabel.getStyleClass().addAll("text", "label", "price-label", "book-cell-text");
+
+                    valueContainer.getChildren().addAll(retailPriceLabel, stockCountLabel);
+
+                    if (user.getClass() == Customer.class) {
+                        FontIcon addIcon = new FontIcon("mdi2b-basket-plus");
+                        addIcon.getStyleClass().addAll("icon", "add-book-icon");
+                        root.getChildren().addAll(bookIcon, textContainer, valueContainer, addIcon);
+                    } else {
+                        root.getChildren().addAll(bookIcon, textContainer, valueContainer);
+                    }
+
                     this.setGraphic(root);
+
                 } else {
                     setText(null);
                     setGraphic(null);

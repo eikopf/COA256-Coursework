@@ -18,18 +18,6 @@ public class LoginScene extends Scene {
     private static SelectionModel<AbstractUser> selectedUserModel;
 
     /**
-     * Custom event handler bound to {@link KeyEvent}.KEY_PRESSED at instantiation.
-     */
-    private static EventHandler<KeyEvent> keyPressHandler = event -> {
-
-        // switches on the specific key event that occurs
-        switch (event.getCode()) {
-            default -> {
-            }
-        }
-    };
-
-    /**
      * Custom event handler bound to {@link KeyEvent}.KEYRELEASED at instantiation.
      */
     private static EventHandler<KeyEvent> keyReleaseHandler = event -> {
@@ -64,7 +52,6 @@ public class LoginScene extends Scene {
 
     private LoginScene(Parent root, BookshopManager manager) {
         super(root);
-        addEventHandler(KeyEvent.KEY_PRESSED, keyPressHandler);
         addEventHandler(KeyEvent.KEY_RELEASED, keyReleaseHandler);
 
     }

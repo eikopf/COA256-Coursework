@@ -13,6 +13,9 @@ public class TopBar<T extends AbstractUser> extends HBox {
         paymentIcon.getStyleClass().addAll("payment-icon", "icon");
         FontIcon basketIcon = new FontIcon("mdi2b-basket");
         basketIcon.getStyleClass().addAll("basket-icon", "icon");
+        basketIcon.setOnMouseClicked((event) -> {
+                Main.getPrimaryStage().setScene(BasketScene.getBasketScene(customer));
+            });
 
         topBar.getChildren().add(2, paymentIcon);
         topBar.getChildren().add(3, basketIcon);
@@ -36,6 +39,9 @@ public class TopBar<T extends AbstractUser> extends HBox {
 
         FontIcon backIcon = new FontIcon("mdi2c-chevron-left");
         backIcon.getStyleClass().addAll("icon", "back-icon");
+        backIcon.setOnMouseClicked((event) -> {
+                Main.getPrimaryStage().setScene(LoginScene.getLoginScene(Main.getBookshopManager()));
+            });
 
         HBox labelContainer = new HBox();
         labelContainer.getStyleClass().add("label-container");

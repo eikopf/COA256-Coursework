@@ -41,3 +41,11 @@
 .book-icon {
     -fx-icon-size: 50;
 }
+
+.book-cell-value-container {
+    -fx-alignment: "center-left";
+}
+
+.add-book-icon {
+    -fx-icon-size: 30;
+}

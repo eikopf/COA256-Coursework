@@ -20,7 +20,9 @@ import javafx.scene.layout.VBox;
  * {@link BookshopManager}
  *
  */
-public class BookSearch extends VBox {
+public class BookSearch<T extends AbstractUser> extends VBox {
+
+    private T user;
 
     private StringProperty currentQuery, previousQuery;
     private SelectionModel<AbstractBook> selectionModel;
@@ -61,18 +63,19 @@ public class BookSearch extends VBox {
         }
     }
 
-    private BookSearch() {
+    private BookSearch(T user) {
         super();
         this.currentQuery = new SimpleStringProperty();
         this.previousQuery = new SimpleStringProperty();
+        this.user = user;
     }
 
-    public static BookSearch getBookSearch(BookshopManager manager) {
-        BookSearch root = new BookSearch();
+    public static <T extends AbstractUser> BookSearch<T> getBookSearch(BookshopManager manager, T user) {
+        BookSearch<T> root = new BookSearch<>(user);
         root.setSpacing(12);
         VBox.setVgrow(root, Priority.ALWAYS);
         root.constructSearchBar();
-        root.constructSearchResults(manager);
+        root.constructSearchResults(manager, user);
         return root;
     }
 
@@ -104,7 +107,7 @@ public class BookSearch extends VBox {
         this.getChildren().add(searchBar);
     }
 
-    private void constructSearchResults(BookshopManager manager) {
+    private void constructSearchResults(BookshopManager manager, T user) {
         // construct data
         ObservableList<AbstractBook> books = FXCollections.observableArrayList(manager.getBooks().keySet());
 
@@ -131,7 +134,7 @@ public class BookSearch extends VBox {
         // construct results GUI elemnet
         ListView<AbstractBook> searchResults = new ListView<>(sortedBooks);
         searchResults.getStyleClass().addAll("list-view", "search-results");
-        searchResults.setCellFactory(new BookCellFactory(manager, sortedBooks));
+        searchResults.setCellFactory(new BookCellFactory(manager, sortedBooks, user));
         VBox.setVgrow(searchResults, Priority.ALWAYS);
 
         this.selectionModel = searchResults.getSelectionModel();
