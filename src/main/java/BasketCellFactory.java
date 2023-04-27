@@ -17,7 +17,7 @@ public class BasketCellFactory implements Callback<ListView<AbstractBook>, ListC
 
     public BasketCellFactory(Customer customer) {
         this.customer = customer;
-        this.basket = customer.basket;
+        this.basket = customer.getBasket();
     }
 
     private static String getMajorText(AbstractBook book) {

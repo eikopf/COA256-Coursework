@@ -49,3 +49,8 @@
 .add-book-icon {
     -fx-icon-size: 30;
 }
+
+.purchase-bar {
+    -fx-alignment: "center-left";
+    -fx-padding: 0 8 8 8;
+}

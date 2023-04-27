@@ -5,6 +5,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
 
+import javafx.beans.property.SimpleMapProperty;
+import javafx.beans.property.SimpleSetProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
+import javafx.collections.ObservableSet;
+
 /**
  * Represents and controls the bookshop system, including permissions.
  * As an example, a user might pass a request to the manager.
@@ -13,17 +19,18 @@ import java.util.Scanner;
  * to indicate that the request could not be fulfilled.
  */
 public class BookshopManager {
-    private HashMap<AbstractBook, Integer> books;
-    private HashSet<AbstractUser> users;
+    private SimpleMapProperty<AbstractBook, Integer> books;
+    private SimpleSetProperty<AbstractUser> users;
 
     public BookshopManager(HashMap<AbstractBook, Integer> books, HashSet<AbstractUser> users) {
-        this.books = books;
-        this.users = users;
+        this.books = new SimpleMapProperty<>(FXCollections.observableHashMap());
+        this.books.putAll(books);
+        this.users = new SimpleSetProperty<>(FXCollections.observableSet(users));
     }
 
     public BookshopManager() {
-        this.books = new HashMap<>();
-        this.users = new HashSet<>();
+        this.books = new SimpleMapProperty<>(FXCollections.observableHashMap());
+        this.users = new SimpleSetProperty<>(FXCollections.observableSet());
     }
 
     /**
@@ -129,29 +136,28 @@ public class BookshopManager {
      * @param count the number of books to be added
      */
     void addBooks(AbstractBook book, int count) {
-        if (books.containsKey(book)) {
-            int initialCount = books.get(book);
-            books.replace(book, initialCount + count);
+        if (books.get().containsKey(book)) {
+            int initialCount = books.get().get(book);
+            books.get().replace(book, initialCount + count);
             return;
         }
 
-        books.put(book, count);
+        books.getValue().put(book, count);
     }
 
     /**
      * Adds a user to the system. Will silently fail if the user is already in the system
-     * TODO: should this silently fail?
      * @param user an AbstractUser
      */
     void addUser(AbstractUser user) {
         users.add(user);
     }
 
-    public HashMap<AbstractBook, Integer> getBooks() {
+    public ObservableMap<AbstractBook, Integer> getBooks() {
         return books;
     }
 
-    public HashSet<AbstractUser> getUsers() {
+    public ObservableSet<AbstractUser> getUsers() {
         return users;
     }
 }

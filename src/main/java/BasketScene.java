@@ -45,14 +45,15 @@ public class BasketScene extends Scene{
             });
 
         ListView<AbstractBook> basketListView = getBasketListView(customer);
+        PurchaseBar purchaseBar = PurchaseBar.getPurchaseBar(customer);
 
-        root.getChildren().addAll(topBar, basketListView);
+        root.getChildren().addAll(topBar, basketListView, purchaseBar);
         scene.getStylesheets().add(styleSheetAddress.toExternalForm());
         return scene;
     }
 
     private static ListView<AbstractBook> getBasketListView(Customer customer) {
-        ListView<AbstractBook> root = new ListView<>(FXCollections.observableArrayList(customer.basket.keySet()));
+        ListView<AbstractBook> root = new ListView<>(FXCollections.observableArrayList(customer.getBasket().keySet()));
         root.getStyleClass().addAll("list-view", "basket-list-view");
         root.setCellFactory(new BasketCellFactory(customer));
         VBox.setVgrow(root, Priority.ALWAYS);
