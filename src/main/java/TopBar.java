@@ -1,5 +1,6 @@
 import org.kordamp.ikonli.javafx.FontIcon;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -9,16 +10,24 @@ public class TopBar<T extends AbstractUser> extends HBox {
     public static TopBar<Customer> getCustomerTopBar(Customer customer) {
         TopBar<Customer> topBar = getBaseTopBar(customer);
 
-        FontIcon paymentIcon = new FontIcon("mdi2c-currency-gbp");
+        FontIcon paymentIcon = new FontIcon("mdi2c-currency-usd");
         paymentIcon.getStyleClass().addAll("payment-icon", "icon");
+
+        Button paymentButton = new Button();
+        paymentButton.setGraphic(paymentIcon);
+
         FontIcon basketIcon = new FontIcon("mdi2b-basket");
         basketIcon.getStyleClass().addAll("basket-icon", "icon");
-        basketIcon.setOnMouseClicked((event) -> {
+
+        Button basketButton = new Button();
+        basketButton.setGraphic(basketIcon);
+
+        basketButton.setOnMouseClicked((event) -> {
                 Main.getPrimaryStage().setScene(BasketScene.getBasketScene(customer));
             });
 
-        topBar.getChildren().add(2, paymentIcon);
-        topBar.getChildren().add(3, basketIcon);
+        topBar.getChildren().add(2, paymentButton);
+        topBar.getChildren().add(3, basketButton);
         return topBar;
     }
 
@@ -28,18 +37,26 @@ public class TopBar<T extends AbstractUser> extends HBox {
         FontIcon addIcon = new FontIcon("mdi2b-book-plus");
         addIcon.getStyleClass().addAll("add-icon", "icon");
 
-        topBar.getChildren().add(2, addIcon);
+        Button addButton = new Button();
+        addButton.setGraphic(addIcon);
+
+        topBar.getChildren().add(2, addButton);
         return topBar;
     }
 
     private static <TUser extends AbstractUser> TopBar<TUser> getBaseTopBar(TUser user) {
         TopBar<TUser> root = new TopBar<>();
         root.setSpacing(12);
-        root.getStyleClass().addAll("hbox", "box");
+        root.getStyleClass().addAll("hbox", "box", "top-bar");
 
         FontIcon backIcon = new FontIcon("mdi2c-chevron-left");
         backIcon.getStyleClass().addAll("icon", "back-icon");
-        backIcon.setOnMouseClicked((event) -> {
+
+        Button backButton = new Button();
+        backButton.getStyleClass().addAll("button", "back-button");
+        backButton.setGraphic(backIcon);
+
+        backButton.setOnMouseClicked((event) -> {
                 Main.getPrimaryStage().setScene(LoginScene.getLoginScene(Main.getBookshopManager()));
             });
 
@@ -51,10 +68,7 @@ public class TopBar<T extends AbstractUser> extends HBox {
         labelContainer.getChildren().add(userLabel);
         HBox.setHgrow(labelContainer, Priority.ALWAYS);
 
-        FontIcon settingsIcon = new FontIcon("mdi2d-dots-horizontal-circle");
-        settingsIcon.getStyleClass().addAll("settings-icon", "icon");
-
-        root.getChildren().addAll(backIcon, labelContainer, settingsIcon);
+        root.getChildren().addAll(backButton, labelContainer);
         return root;
     }
 

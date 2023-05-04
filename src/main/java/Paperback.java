@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.util.Date;
 
 /**
  * Represents a paperback in the system. Extends {@link AbstractBook}.
@@ -63,4 +62,31 @@ public class Paperback extends AbstractBook{
             }
         }
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((condition == null) ? 0 : condition.hashCode());
+        result = prime * result + pages;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!super.equals(obj))
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Paperback other = (Paperback) obj;
+        if (condition != other.condition)
+            return false;
+        if (pages != other.pages)
+            return false;
+        return true;
+    }
+
+
 }

@@ -1,7 +1,6 @@
-import java.util.HashMap;
-
 import org.kordamp.ikonli.javafx.FontIcon;
 
+import javafx.collections.ObservableMap;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -13,7 +12,7 @@ import javafx.util.Callback;
 public class BasketCellFactory implements Callback<ListView<AbstractBook>, ListCell<AbstractBook>> {
 
     private Customer customer;
-    private HashMap<AbstractBook, Integer> basket;
+    private ObservableMap<AbstractBook, Integer> basket;
 
     public BasketCellFactory(Customer customer) {
         this.customer = customer;
@@ -65,6 +64,7 @@ public class BasketCellFactory implements Callback<ListView<AbstractBook>, ListC
                     Label quantityLabel = new Label("x" + Integer.toString(quantity));
                     quantityLabel.getStyleClass().addAll("text", "quantity-text");
                     quantityLabel.setFont(GUIConstants.montserrat25Bold);
+                    quantityLabel.setPrefWidth(60);
 
                     // book icon (breaks over type)
                     FontIcon bookIcon;
@@ -95,12 +95,15 @@ public class BasketCellFactory implements Callback<ListView<AbstractBook>, ListC
 
                     VBox priceContainer = new VBox();
                     priceContainer.getStyleClass().addAll("box", "vbox", "basket-cell-price-container");
+                    priceContainer.setPrefWidth(80);
 
-                    Label totalPriceLabel = new Label(Double.toString(totalPrice));
+                    Label totalPriceLabel = new Label(GUIConstants.currencyFormat.format(totalPrice));
                     totalPriceLabel.getStyleClass().addAll("text", "price-label", "label");
                     totalPriceLabel.setFont(GUIConstants.montserrat20);
 
-                    Label unitPriceLabel = new Label(Double.toString(unitPrice));
+                    Label unitPriceLabel = new Label(Integer.toString(quantity) +
+                                                     " x " +
+                                                     GUIConstants.currencyFormat.format(unitPrice));
                     unitPriceLabel.getStyleClass().addAll("text", "price-label", "label");
                     unitPriceLabel.setFont(GUIConstants.montserrat12Italic);
 

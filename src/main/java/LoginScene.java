@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionModel;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class LoginScene extends Scene {
@@ -67,6 +68,7 @@ public class LoginScene extends Scene {
 
         ListView<AbstractUser> userListView = new ListView<>(sortedUsers);
         userListView.setCellFactory(new LoginCellFactory());
+        VBox.setVgrow(userListView, Priority.ALWAYS);
 
         VBox pane = new VBox();
         pane.getStyleClass().add("pane");

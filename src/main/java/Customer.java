@@ -1,4 +1,10 @@
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.HashMap;
+
+import javafx.beans.property.SimpleMapProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
 
 /**
  * Represents a particular instance of a customer in the system. Extends {@link AbstractUser}.
@@ -14,7 +20,7 @@ public class Customer extends AbstractUser {
      * Stores the contents of the user's basket.
      * The value assigned to each key represents the number of that key in the basket
      */
-    private HashMap<AbstractBook, Integer> basket;
+    private SimpleMapProperty<AbstractBook, Integer> basket;
 
     /*
      * Constructs a Customer
@@ -33,7 +39,8 @@ public class Customer extends AbstractUser {
                     HashMap<AbstractBook, Integer> basket) {
         super(id, username, surname, address);
         this.balance = balance;
-        this.basket = basket;
+        this.basket = new SimpleMapProperty<>(FXCollections.observableHashMap());
+        this.basket.putAll(basket);
     }
 
     @Override
@@ -48,7 +55,7 @@ public class Customer extends AbstractUser {
                 '}';
     }
 
-    public HashMap<AbstractBook, Integer> getBasket() {
+    public ObservableMap<AbstractBook, Integer> getBasket() {
         return this.basket;
     }
 
@@ -61,7 +68,7 @@ public class Customer extends AbstractUser {
     }
 
     public boolean incrementCountInBasket(AbstractBook book) {
-        if (Main.getBookshopManager().getBooks().get(book) > basket.getOrDefault(book, 0) + 1) {
+        if (Main.getBookshopManager().getBooks().get(book) < basket.getOrDefault(book, 0) + 1) {
             return false;
         }
 
@@ -79,7 +86,31 @@ public class Customer extends AbstractUser {
         basket.clear();
     }
 
-    public void purchase() {
-        //TODO: to be implemented
+    public boolean purchase() {
+        if (balance < getBasketPrice()) return false;
+        balance -= getBasketPrice();
+
+        try {
+            Main.getBookshopManager().processPurchase(this, basket);
+        } catch (IOException | URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        clearBasket(); // TODO: propogate this change to purchase bar
+        return true;
+    }
+
+    public double getBasketPrice() {
+        double basketPrice = 0;
+
+        for (AbstractBook book : basket.keySet()) {
+            basketPrice += basket.get(book) * book.retailPrice;
+        }
+
+        return basketPrice;
+    }
+
+    public double getBalance() {
+        return this.balance;
     }
 }

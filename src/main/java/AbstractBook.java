@@ -72,6 +72,60 @@ public abstract class AbstractBook {
         }
     }
 
+
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((barcode == null) ? 0 : barcode.hashCode());
+        result = prime * result + ((genre == null) ? 0 : genre.hashCode());
+        result = prime * result + ((language == null) ? 0 : language.hashCode());
+        result = prime * result + ((releaseDate == null) ? 0 : releaseDate.hashCode());
+        long temp;
+        temp = Double.doubleToLongBits(retailPrice);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        result = prime * result + ((title == null) ? 0 : title.hashCode());
+        return result;
+    }
+
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        AbstractBook other = (AbstractBook) obj;
+        if (barcode == null) {
+            if (other.barcode != null)
+                return false;
+        } else if (!barcode.equals(other.barcode))
+            return false;
+        if (genre != other.genre)
+            return false;
+        if (language != other.language)
+            return false;
+        if (releaseDate == null) {
+            if (other.releaseDate != null)
+                return false;
+        } else if (!releaseDate.equals(other.releaseDate))
+            return false;
+        if (Double.doubleToLongBits(retailPrice) != Double.doubleToLongBits(other.retailPrice))
+            return false;
+        if (title == null) {
+            if (other.title != null)
+                return false;
+        } else if (!title.equals(other.title))
+            return false;
+        return true;
+    }
+
+
+
     /**
      * Thrown when parsing an {@link AbstractBook} from a file fails because a string was malformed.
      */

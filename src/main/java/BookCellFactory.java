@@ -1,6 +1,7 @@
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import javafx.collections.transformation.SortedList;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -126,7 +127,7 @@ public class BookCellFactory implements Callback<ListView<AbstractBook>, ListCel
                     stockCountLabel.setFont(GUIConstants.montserrat12);
                     stockCountLabel.getStyleClass().addAll("text", "label", "stock-label", "book-cell-text");
 
-                    Label retailPriceLabel = new Label("Price: " + Double.toString(book.retailPrice));
+                    Label retailPriceLabel = new Label("Price: " + GUIConstants.currencyFormat.format(book.retailPrice));
                     retailPriceLabel.setFont(GUIConstants.montserrat12);
                     retailPriceLabel.getStyleClass().addAll("text", "label", "price-label", "book-cell-text");
 
@@ -135,7 +136,16 @@ public class BookCellFactory implements Callback<ListView<AbstractBook>, ListCel
                     if (user.getClass() == Customer.class) {
                         FontIcon addIcon = new FontIcon("mdi2b-basket-plus");
                         addIcon.getStyleClass().addAll("icon", "add-book-icon");
-                        root.getChildren().addAll(bookIcon, textContainer, valueContainer, addIcon);
+
+                        Button addButton = new Button();
+                        addButton.getStyleClass().addAll("button", "add-button", "icon-button");
+                        addButton.setGraphic(addIcon);
+
+                        addButton.setOnMouseClicked((event) -> {
+                                ((Customer) user).incrementCountInBasket(book);
+                            });
+
+                        root.getChildren().addAll(bookIcon, textContainer, valueContainer, addButton);
                     } else {
                         root.getChildren().addAll(bookIcon, textContainer, valueContainer);
                     }

@@ -1,4 +1,4 @@
-/* this css file is used during the CustomerScene scene */
+/* this css file is used during the UserScene & BasketScene scenes */
 
 .ikonli-font-icon {
     -fx-icon-size: 50;
@@ -53,4 +53,32 @@
 .purchase-bar {
     -fx-alignment: "center-left";
     -fx-padding: 0 8 8 8;
+}
+
+.top-bar {
+    -fx-padding: 4 4 4 4;
+}
+
+.quantity-text {
+    -fx-alignment: "center";
+}
+
+.basket-cell-price-container {
+    -fx-alignment: "center-right";
+}
+
+.total-count {
+    -fx-alignment: "center";
+}
+
+.total-price {
+    -fx-alignment: "center";
+}
+
+.stretch-bar {
+    -fx-alignment: "center";
+}
+
+.clear-icon {
+    -fx-icon-size: 30;
 }

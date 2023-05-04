@@ -1,8 +1,9 @@
+import org.kordamp.ikonli.javafx.FontIcon;
+
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleMapProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.MapChangeListener;
+import javafx.collections.ObservableMap;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -14,22 +15,39 @@ public class PurchaseBar extends HBox {
     private SimpleIntegerProperty basketTotalCount;
     private SimpleDoubleProperty basketTotalPrice;
     private Customer customer;
-    private SimpleMapProperty<AbstractBook, Integer> basket;
+    private ObservableMap<AbstractBook, Integer> basket;
 
     private PurchaseBar(Customer customer) {
-        this.basketTotalCount = new SimpleIntegerProperty(0);
-        this.basketTotalPrice = new SimpleDoubleProperty(0);
         this.customer = customer;
-        this.basket = new SimpleMapProperty<>(FXCollections.observableHashMap());
-        basket.putAll(basket);
+        this.basket = customer.getBasket();
+        this.basketTotalCount = new SimpleIntegerProperty(computeBasketTotalCount(basket));
+        this.basketTotalPrice = new SimpleDoubleProperty(computeBasketTotalPrice(basket));
 
         // bind basket changes to update local values
         basket.addListener((MapChangeListener.Change<? extends AbstractBook, ? extends Integer> change) -> {
-                this.basketTotalPrice.set(0);
-                this.basketTotalCount.set(0);
-                basket.keySet().stream().forEach((key) -> this.basketTotalPrice.add(key.retailPrice));
-                basket.values().stream().forEach((value) -> this.basketTotalCount.add(value));
+                this.basketTotalPrice.set(computeBasketTotalPrice(basket));
+                this.basketTotalCount.set(computeBasketTotalCount(basket));
             });
+    }
+
+    private static double computeBasketTotalPrice(ObservableMap<AbstractBook, Integer> basket) {
+        double basketPrice = 0;
+
+        for (AbstractBook key : basket.keySet()) {
+            basketPrice += basket.get(key) * key.retailPrice;
+        }
+
+        return basketPrice;
+    }
+
+    private static int computeBasketTotalCount(ObservableMap<AbstractBook, Integer> basket) {
+        int count = 0;
+
+        for (AbstractBook key : basket.keySet()) {
+            count += basket.get(key);
+        }
+
+        return count;
     }
 
     public static PurchaseBar getPurchaseBar(Customer customer) {
@@ -40,19 +58,36 @@ public class PurchaseBar extends HBox {
         Label totalCountLabel = new Label("x" + Integer.toString(root.getBasketTotalCount().get()));
         totalCountLabel.getStyleClass().addAll("text", "total-count", "label");
         totalCountLabel.setFont(GUIConstants.montserrat25Bold);
+        totalCountLabel.setPrefWidth(60);
 
         VBox stretchBar = new VBox();
+        stretchBar.getStyleClass().addAll("stretch-bar");
         HBox.setHgrow(stretchBar, Priority.ALWAYS);
 
-        Label totalPriceLabel = new Label(Double.toString(root.getBasketTotalPrice().get()));
+        Label totalPriceLabel = new Label("Basket Price: " + GUIConstants.currencyFormat.format(root.getBasketTotalPrice().get()));
         totalPriceLabel.getStyleClass().addAll("text", "total-price", "label");
         totalPriceLabel.setFont(GUIConstants.montserrat25Bold);
+        stretchBar.getChildren().add(totalPriceLabel);
+
+        FontIcon clearIcon = new FontIcon("mdi2t-trash-can");
+        clearIcon.getStyleClass().addAll("icon", "clear-icon");
+        Button clearButton = new Button();
+        clearButton.setGraphic(clearIcon);
+        clearButton.setPrefHeight(50);
+
+        clearButton.setOnMouseClicked((event) -> {
+                customer.clearBasket();
+            });
 
         Button paymentButton = new Button("Purchase");
         paymentButton.getStyleClass().addAll("text", "button", "payment-button");
         paymentButton.setFont(GUIConstants.montserrat25Bold);
 
-        root.getChildren().addAll(totalCountLabel, stretchBar, totalPriceLabel, paymentButton);
+        paymentButton.setOnMouseClicked((event) -> {
+                customer.purchase();
+            });
+
+        root.getChildren().addAll(totalCountLabel, stretchBar, clearButton, paymentButton);
         return root;
     }
 

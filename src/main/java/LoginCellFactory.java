@@ -13,6 +13,16 @@ import javafx.util.Callback;
  */
 public class LoginCellFactory implements Callback<ListView<AbstractUser>, ListCell<AbstractUser>> {
 
+    private static void loadUserScene(AbstractUser user) {
+        if (user.isAdmin()) {
+            Main.getPrimaryStage().setScene(UserScene.getAdminScene(Main.getBookshopManager(),
+                                                                    (Admin) user));
+        } else {
+            Main.getPrimaryStage().setScene(UserScene.getCustomerScene(Main.getBookshopManager(),
+                                                                       (Customer) user));
+        }
+    }
+
     @Override
     public ListCell<AbstractUser> call(ListView<AbstractUser> param) {
         return new ListCell<>(){
@@ -22,6 +32,14 @@ public class LoginCellFactory implements Callback<ListView<AbstractUser>, ListCe
                 this.getStyleClass().add("list-cell");
 
                 if (!empty && item != null) {
+
+                    // double-click bound to loadUserScene
+                    this.setOnMouseClicked((event) -> {
+                            if (event.getClickCount() == 2) {
+                                loadUserScene(item);
+                            }
+                        });
+
                     // primary layout node
                     HBox mainContainer = new HBox();
                     mainContainer.getStyleClass().addAll("box", "hbox", "main-container");

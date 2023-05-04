@@ -1,4 +1,6 @@
 import java.io.InputStream;
+import java.text.DecimalFormat;
+import java.util.Locale;
 
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -29,4 +31,7 @@ public final class GUIConstants {
     // WINDOW CONSTANTS
     public static final int WIDTH = 800;
     public static final int HEIGHT = 600;
+
+    // NUMERICAL FORMATTING
+    public static final DecimalFormat currencyFormat = (DecimalFormat) DecimalFormat.getCurrencyInstance();
 }

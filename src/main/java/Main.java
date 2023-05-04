@@ -1,8 +1,8 @@
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.Charset;
+import java.net.URISyntaxException;
 import java.util.Objects;
-import java.util.Random;
+import java.util.Set;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -20,13 +20,12 @@ public class Main extends Application {
             // solution found here (https://stackoverflow.com/a/70864141)
             // construct input streams over the files
             InputStream stockFileStream = Objects.requireNonNull(
-                    Main.class.getResource("/datafiles/Stock.txt")
-            ).openStream();
+                    Main.class.getResource("/datafiles/Stock.txt")).openStream();
             InputStream userAccountsFileStream = Objects.requireNonNull(
-                    Main.class.getResource("/datafiles/UserAccounts.txt")
-            ).openStream();
+                    Main.class.getResource("/datafiles/UserAccounts.txt")).openStream();
 
             manager.initialize(stockFileStream, userAccountsFileStream);
+
         } catch (AbstractBook.MalformedBookCharacteristicException | IOException | NullPointerException e) {
             throw new RuntimeException(e);
         }
@@ -36,9 +35,10 @@ public class Main extends Application {
 
     /**
      * @param primaryStage the primary stage for this application, onto which
-     * the application scene can be set.
-     * Applications may create other stages, if needed, but they will not be
-     * primary stages.
+     *                     the application scene can be set.
+     *                     Applications may create other stages, if needed, but they
+     *                     will not be
+     *                     primary stages.
      */
     @Override
     public void start(Stage primaryStage) {

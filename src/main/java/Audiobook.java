@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.util.Date;
 
 /**
  * Represents an audiobook in the system. Extends {@link AbstractBook}.
@@ -72,5 +71,32 @@ public class Audiobook extends AbstractBook implements Formatted{
 
     public static Enum<?> getFormatString(String format) {
         return Format.toFormat(format);
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((format == null) ? 0 : format.hashCode());
+        long temp;
+        temp = Double.doubleToLongBits(length);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!super.equals(obj))
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Audiobook other = (Audiobook) obj;
+        if (format != other.format)
+            return false;
+        if (Double.doubleToLongBits(length) != Double.doubleToLongBits(other.length))
+            return false;
+        return true;
     }
 }
