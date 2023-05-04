@@ -180,6 +180,7 @@ public class BookshopManager {
         reader.close();
         builder.delete(builder.length() - 1, builder.length());
 
+        // TODO: push changes to bookshop manager
 
         // init buffwriter in WRITE mode
         BufferedWriter writer = Files.newBufferedWriter(Paths.get(stockFileURL.toURI()),
