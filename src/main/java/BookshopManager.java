@@ -161,8 +161,9 @@ public class BookshopManager {
             } else {
                 String[] fields = line.split(", ");
                 AbstractBook book = barcodeMap.get(fields[0]);
-                fields[6] = Integer.toString(Main.getBookshopManager().getBooks().get(book) -
-                        basket.get(book));
+                int updatedCount = books.get(book) - basket.get(book);
+                fields[6] = Integer.toString(updatedCount);
+                this.setCount(book, updatedCount);
 
                 // remove book from file if count <= 0
                 if (Integer.parseInt(fields[6]) <= 0) return;
@@ -179,8 +180,6 @@ public class BookshopManager {
         });
         reader.close();
         builder.delete(builder.length() - 1, builder.length());
-
-        // TODO: push changes to bookshop manager
 
         // init buffwriter in WRITE mode
         BufferedWriter writer = Files.newBufferedWriter(Paths.get(stockFileURL.toURI()),
@@ -257,6 +256,12 @@ public class BookshopManager {
      */
     void addUser(AbstractUser user) {
         users.add(user);
+    }
+
+    void setCount(AbstractBook book, int count) {
+        if (count <= 1) this.books.remove(book);
+
+        this.books.put(book, count);
     }
 
     public ObservableMap<AbstractBook, Integer> getBooks() {
