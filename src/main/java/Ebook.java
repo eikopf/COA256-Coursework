@@ -89,6 +89,15 @@ public class Ebook extends AbstractBook implements Formatted{
                 default : throw new EnumConstantNotPresentException(Format.class, format);
             }
         }
+
+        @Override
+        public String toString() {
+            return switch (this) {
+                case EPUB -> "EPUB";
+                case MOBI -> "MOBI";
+                case PDF -> "PDF";
+            };
+        }
     }
 
     public static Class<? extends Enum> getFormatEnum() {
@@ -97,5 +106,27 @@ public class Ebook extends AbstractBook implements Formatted{
 
     public static Enum<?> getFormatString(String format) {
         return Format.toFormat(format);
+    }
+
+    @Override
+    public String toDataString(int count) {
+        return new StringBuilder(barcode)
+            .append(", ebook, ")
+            .append(title)
+            .append(", ")
+            .append(language)
+            .append(", ")
+            .append(genre)
+            .append(", ")
+            .append(dateFormatter.format(releaseDate))
+            .append(", ")
+            .append(count)
+            .append(", ")
+            .append(retailPrice)
+            .append(", ")
+            .append(pages)
+            .append(", ")
+            .append(format)
+            .toString();
     }
 }

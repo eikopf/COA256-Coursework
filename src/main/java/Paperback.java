@@ -61,6 +61,14 @@ public class Paperback extends AbstractBook{
                 default : throw new EnumConstantNotPresentException(Condition.class, condition);
             }
         }
+
+        @Override
+        public String toString() {
+            return switch (this) {
+                case New -> "new";
+                case Used -> "used";
+            };
+        }
     }
 
     @Override
@@ -88,5 +96,26 @@ public class Paperback extends AbstractBook{
         return true;
     }
 
+    public String toDataString(int count) {
+        return new StringBuilder(this.barcode)
+            .append(", paperback")
+            .append(", ")
+            .append(title)
+            .append(", ")
+            .append(language)
+            .append(", ")
+            .append(genre)
+            .append(", ")
+            .append(dateFormatter.format(releaseDate))
+            .append(", ")
+            .append(count)
+            .append(", ")
+            .append(retailPrice)
+            .append(", ")
+            .append(pages)
+            .append(", ")
+            .append(condition)
+            .toString();
+    }
 
 }

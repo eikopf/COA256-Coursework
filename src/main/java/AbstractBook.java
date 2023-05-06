@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Represents an instance of a book in the system.
@@ -11,6 +12,8 @@ public abstract class AbstractBook {
     Genre genre;
     LocalDate releaseDate;
     double retailPrice;
+
+    protected static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public AbstractBook(String barcode,
                         String title,
@@ -45,6 +48,14 @@ public abstract class AbstractBook {
                 default -> throw new EnumConstantNotPresentException(Language.class, language);
             };
         }
+
+        @Override
+        public String toString() {
+            return switch (this) {
+                case English -> "English";
+                case French -> "French";
+            };
+        }
     }
 
     /**
@@ -68,6 +79,16 @@ public abstract class AbstractBook {
                 case "business" -> Genre.Business;
                 case "biography" -> Genre.Biography;
                 default -> throw new EnumConstantNotPresentException(Genre.class, genre);
+            };
+        }
+
+        @Override
+        public String toString() {
+            return switch (this) {
+                case Politics -> "Politics";
+                case ComputerScience -> "Computer Science";
+                case Business -> "Business";
+                case Biography -> "Biography";
             };
         }
     }
@@ -122,6 +143,78 @@ public abstract class AbstractBook {
         } else if (!title.equals(other.title))
             return false;
         return true;
+    }
+
+    abstract public String toDataString(int count);
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+
+
+    public String getTitle() {
+        return title;
+    }
+
+
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+
+
+    public Language getLanguage() {
+        return language;
+    }
+
+
+
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
+
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+
+
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
+
+
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+
+
+    public double getRetailPrice() {
+        return retailPrice;
+    }
+
+
+
+    public void setRetailPrice(double retailPrice) {
+        this.retailPrice = retailPrice;
     }
 
 

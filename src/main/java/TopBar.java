@@ -39,6 +39,9 @@ public class TopBar<T extends AbstractUser> extends HBox {
 
         Button addButton = new Button();
         addButton.setGraphic(addIcon);
+        addButton.setOnMouseClicked((event) -> {
+                Main.getPrimaryStage().setScene(AddScene.getAddScene(admin));
+            });
 
         topBar.getChildren().add(2, addButton);
         return topBar;

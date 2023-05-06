@@ -138,6 +138,47 @@ public class BookshopManager {
         return this;
     }
 
+    public void processBookAddition(AbstractBook book, int addCount) throws IOException, URISyntaxException {
+        // fetch resource
+        URL stockFileURL = Main.class.getResource("/datafiles/Stock.txt");
+
+        // get read-handle to file & init builder
+        BufferedReader reader = Files.newBufferedReader(Paths.get(stockFileURL.toURI()));
+        StringBuilder builder = new StringBuilder();
+
+        // iterate over reader and append to builder
+        // make changes by matching barcodes
+        boolean alteredBufferFlag = false;
+        for (String line : reader.lines().toList()) {
+            if (!book.barcode.equals(line.substring(0, 8))) {
+                builder.append(line);
+            } else {
+                String[] fields = line.split(", ");
+                fields[6] = Integer.toString(addCount + Integer.parseInt(fields[6]));
+                this.setCount(book, Integer.parseInt(fields[6]));
+
+                alteredBufferFlag = true;
+            }
+
+            builder.append("\n");
+        }
+
+        // if no change was registered, append a new book to the stock file
+        if (alteredBufferFlag) {
+            builder.delete(builder.length() - 1, builder.length());
+        } else {
+            builder.append(book.toDataString(addCount));
+        }
+
+        // stop reading file & initialize writer in WRITE mode
+        reader.close();
+        BufferedWriter writer = Files.newBufferedWriter(Paths.get(stockFileURL.toURI()),
+                                                        StandardOpenOption.WRITE);
+
+        writer.write(builder.toString());
+        writer.close(); // implicit flush
+    }
+
     public void processPurchase(Customer customer, Map<AbstractBook, Integer> basket)
             throws IOException, URISyntaxException {
         // fetch resource
@@ -166,7 +207,8 @@ public class BookshopManager {
                 this.setCount(book, updatedCount);
 
                 // remove book from file if count <= 0
-                if (Integer.parseInt(fields[6]) <= 0) return;
+                if (Integer.parseInt(fields[6]) <= 0)
+                    return;
 
                 StringBuilder resultBuilder = new StringBuilder();
                 Arrays.stream(fields).forEachOrdered((field) -> {
@@ -259,7 +301,8 @@ public class BookshopManager {
     }
 
     void setCount(AbstractBook book, int count) {
-        if (count <= 1) this.books.remove(book);
+        if (count <= 1)
+            this.books.remove(book);
 
         this.books.put(book, count);
     }

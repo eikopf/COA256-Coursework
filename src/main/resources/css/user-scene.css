@@ -82,3 +82,28 @@
 .clear-icon {
     -fx-icon-size: 30;
 }
+
+.add-scene-root-container {
+    -fx-alignment: "center";
+}
+
+.add-scene-interactable-container {
+    -fx-alignment: "top-center";
+}
+
+.type-select-container {
+    -fx-alignment: "center";
+}
+
+.type-select-label {
+    -fx-alignment: "center";
+    -fx-text-alignment: "center";
+}
+
+.add-field-container {
+    -fx-alignment: "center";
+}
+
+.add-button-container {
+    -fx-alignment: "center-right";
+}

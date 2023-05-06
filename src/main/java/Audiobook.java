@@ -63,6 +63,15 @@ public class Audiobook extends AbstractBook implements Formatted{
                 default -> throw new EnumConstantNotPresentException(Format.class, format);
             };
         }
+
+        @Override
+        public String toString() {
+            return switch (this) {
+                case MP3 -> "MP3";
+                case WMA -> "WMA";
+                case AAC -> "AAC";
+            };
+        }
     }
 
     public static Class<? extends Enum> getFormatEnum() {
@@ -98,5 +107,27 @@ public class Audiobook extends AbstractBook implements Formatted{
         if (Double.doubleToLongBits(length) != Double.doubleToLongBits(other.length))
             return false;
         return true;
+    }
+
+    @Override
+    public String toDataString(int count) {
+        return new StringBuilder(barcode)
+            .append(", audiobook")
+            .append(", ")
+            .append(title)
+            .append(", ")
+            .append(language)
+            .append(", ")
+            .append(genre)
+            .append(", ")
+            .append(dateFormatter.format(releaseDate))
+            .append(", ")
+            .append(count)
+            .append(retailPrice)
+            .append(", ")
+            .append(length)
+            .append(", ")
+            .append(format)
+            .toString();
     }
 }
