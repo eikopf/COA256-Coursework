@@ -1,10 +1,9 @@
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDate;;
 
 /**
  * Represents an ebook in the system. Extends {@link AbstractBook}.
  */
-public class Ebook extends AbstractBook implements Formatted{
+public class Ebook extends AbstractBook {
 
     /**
      * Represents the number of (virtual) pages in the ebook.
@@ -98,10 +97,6 @@ public class Ebook extends AbstractBook implements Formatted{
                 case PDF -> "PDF";
             };
         }
-    }
-
-    public static Class<? extends Enum> getFormatEnum() {
-        return Format.class;
     }
 
     public static Enum<?> getFormatString(String format) {

@@ -1,8 +1,6 @@
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
 import java.util.Objects;
-import java.util.Set;
 
 import javafx.application.Application;
 import javafx.stage.Stage;

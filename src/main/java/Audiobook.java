@@ -3,7 +3,7 @@ import java.time.LocalDate;
 /**
  * Represents an audiobook in the system. Extends {@link AbstractBook}.
  */
-public class Audiobook extends AbstractBook implements Formatted{
+public class Audiobook extends AbstractBook {
 
     /**
      * Stores the length of the audiobook in hours.
@@ -72,10 +72,6 @@ public class Audiobook extends AbstractBook implements Formatted{
                 case AAC -> "AAC";
             };
         }
-    }
-
-    public static Class<? extends Enum> getFormatEnum() {
-        return Format.class;
     }
 
     public static Enum<?> getFormatString(String format) {
