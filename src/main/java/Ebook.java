@@ -10,31 +10,6 @@ public class Ebook extends AbstractBook {
      */
     int pages;
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = super.hashCode();
-        result = prime * result + ((format == null) ? 0 : format.hashCode());
-        result = prime * result + pages;
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (!super.equals(obj))
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Ebook other = (Ebook) obj;
-        if (format != other.format)
-            return false;
-        if (pages != other.pages)
-            return false;
-        return true;
-    }
-
     /**
      * Represents the file format of the ebook.
      */
@@ -99,10 +74,6 @@ public class Ebook extends AbstractBook {
         }
     }
 
-    public static Enum<?> getFormatString(String format) {
-        return Format.toFormat(format);
-    }
-
     @Override
     public String toDataString(int count) {
         return new StringBuilder(barcode)
@@ -123,5 +94,30 @@ public class Ebook extends AbstractBook {
             .append(", ")
             .append(format)
             .toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((format == null) ? 0 : format.hashCode());
+        result = prime * result + pages;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!super.equals(obj))
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Ebook other = (Ebook) obj;
+        if (format != other.format)
+            return false;
+        if (pages != other.pages)
+            return false;
+        return true;
     }
 }

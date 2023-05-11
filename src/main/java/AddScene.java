@@ -46,7 +46,7 @@ public class AddScene extends Scene {
 
     // ebook fields
     private Ebook.Format selectedEbookFormat;
-    private int selectedEbookpages;
+    private int selectedEbookPages;
 
     // paperback fields
     private Paperback.Condition selectedPaperbackCondition;
@@ -292,7 +292,7 @@ public class AddScene extends Scene {
                     scene.selectedAudiobookLength = Double.parseDouble(lengthField.getText());
                 }
                 case 2 -> { // ebook
-                    scene.selectedEbookpages = Integer.parseInt(lengthField.getText());
+                    scene.selectedEbookPages = Integer.parseInt(lengthField.getText());
                 }
             }
         });
@@ -382,7 +382,7 @@ public class AddScene extends Scene {
                              selectedBookGenre,
                              selectedBookDate,
                              selectedBookRetailPrice,
-                             selectedEbookpages,
+                             selectedEbookPages,
                              selectedEbookFormat);
         }
 

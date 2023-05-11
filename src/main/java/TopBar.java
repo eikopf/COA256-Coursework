@@ -16,6 +16,10 @@ public class TopBar<T extends AbstractUser> extends HBox {
         Button paymentButton = new Button();
         paymentButton.setGraphic(paymentIcon);
 
+        paymentButton.setOnMouseClicked((event) -> {
+                Main.getPrimaryStage().setScene(PaymentScene.getPaymentScene(customer));
+        });
+
         FontIcon basketIcon = new FontIcon("mdi2b-basket");
         basketIcon.getStyleClass().addAll("basket-icon", "icon");
 
