@@ -1,8 +1,7 @@
 ## Dependencies
 
-|                                                   |                                                  |
-|---------------------------------------------------|--------------------------------------------------|
 | Plugins                                           | Justification                                    |
+|---------------------------------------------------|--------------------------------------------------|
 | [JavaFX 19](https://openjfx.io/)                  | A modern successor to Java's internal Swing API  |
 | [Shadow](https://github.com/johnrengelman/shadow) | Allows the creation of "fat" `.jar` files        |
 | [Ikonli](https://github.com/kordamp/ikonli)       | Provides access to the Bootstrap icon set        |
