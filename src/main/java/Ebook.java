@@ -1,4 +1,4 @@
-import java.time.LocalDate;;
+import java.time.LocalDate;
 
 /**
  * Represents an ebook in the system. Extends {@link AbstractBook}.
@@ -56,12 +56,12 @@ public class Ebook extends AbstractBook {
          * @return a reasonable equivalent value of Ebook.Format
          */
         public static Format toFormat(String format) throws EnumConstantNotPresentException{
-            switch (format.toLowerCase()) {
-                case "epub" : return Format.EPUB;
-                case "mobi" : return Format.MOBI;
-                case "pdf" : return Format.PDF;
-                default : throw new EnumConstantNotPresentException(Format.class, format);
-            }
+            return switch (format.toLowerCase()) {
+                case "epub" -> Format.EPUB;
+                case "mobi" -> Format.MOBI;
+                case "pdf" -> Format.PDF;
+                default -> throw new EnumConstantNotPresentException(Format.class, format);
+            };
         }
 
         @Override
@@ -76,24 +76,23 @@ public class Ebook extends AbstractBook {
 
     @Override
     public String toDataString(int count) {
-        return new StringBuilder(barcode)
-            .append(", ebook, ")
-            .append(title)
-            .append(", ")
-            .append(language)
-            .append(", ")
-            .append(genre)
-            .append(", ")
-            .append(dateFormatter.format(releaseDate))
-            .append(", ")
-            .append(count)
-            .append(", ")
-            .append(retailPrice)
-            .append(", ")
-            .append(pages)
-            .append(", ")
-            .append(format)
-            .toString();
+        return barcode +
+                ", ebook, " +
+                title +
+                ", " +
+                language +
+                ", " +
+                genre +
+                ", " +
+                dateFormatter.format(releaseDate) +
+                ", " +
+                count +
+                ", " +
+                retailPrice +
+                ", " +
+                pages +
+                ", " +
+                format;
     }
 
     @Override
@@ -116,8 +115,6 @@ public class Ebook extends AbstractBook {
         Ebook other = (Ebook) obj;
         if (format != other.format)
             return false;
-        if (pages != other.pages)
-            return false;
-        return true;
+        return pages == other.pages;
     }
 }

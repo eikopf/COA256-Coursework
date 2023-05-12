@@ -8,19 +8,17 @@ import javafx.scene.layout.VBox;
 
 public class UserScene<T extends AbstractUser> extends Scene {
 
-    private T user;
     private static final URL styleSheetAddress = Main.class.getResource("css/user-scene.css");
 
-    private static EventHandler<KeyEvent> keyReleaseHandler = event -> {
+    private static final EventHandler<KeyEvent> keyReleaseHandler = event -> {
         switch (event.getCode()) {
             case ESCAPE -> loadLoginScene();
             default -> {}
         }
     };
 
-    private UserScene(Parent root, T user) {
+    private UserScene(Parent root) {
         super(root);
-        this.user = user;
         addEventHandler(KeyEvent.KEY_RELEASED, keyReleaseHandler);
     }
 
@@ -34,7 +32,7 @@ public class UserScene<T extends AbstractUser> extends Scene {
         root.getChildren().addAll(TopBar.getCustomerTopBar(customer),
                                   BookSearch.getBookSearch(manager, customer));
 
-        UserScene<Customer> scene = new UserScene<Customer>(root, customer);
+        UserScene<Customer> scene = new UserScene<>(root);
         scene.getStylesheets().add(styleSheetAddress.toExternalForm());
 
         return scene;
@@ -46,7 +44,7 @@ public class UserScene<T extends AbstractUser> extends Scene {
         root.getChildren().addAll(TopBar.getAdminTopBar(admin),
                                   BookSearch.getBookSearch(manager, admin));
 
-        UserScene<Admin> scene = new UserScene<Admin>(root, admin);
+        UserScene<Admin> scene = new UserScene<>(root);
         scene.getStylesheets().add(styleSheetAddress.toExternalForm());
 
         return scene;

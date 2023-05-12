@@ -100,30 +100,27 @@ public class Audiobook extends AbstractBook {
         Audiobook other = (Audiobook) obj;
         if (format != other.format)
             return false;
-        if (Double.doubleToLongBits(length) != Double.doubleToLongBits(other.length))
-            return false;
-        return true;
+        return Double.doubleToLongBits(length) == Double.doubleToLongBits(other.length);
     }
 
     @Override
     public String toDataString(int count) {
-        return new StringBuilder(barcode)
-            .append(", audiobook")
-            .append(", ")
-            .append(title)
-            .append(", ")
-            .append(language)
-            .append(", ")
-            .append(genre)
-            .append(", ")
-            .append(dateFormatter.format(releaseDate))
-            .append(", ")
-            .append(count)
-            .append(retailPrice)
-            .append(", ")
-            .append(length)
-            .append(", ")
-            .append(format)
-            .toString();
+        return barcode +
+                ", audiobook" +
+                ", " +
+                title +
+                ", " +
+                language +
+                ", " +
+                genre +
+                ", " +
+                dateFormatter.format(releaseDate) +
+                ", " +
+                count +
+                retailPrice +
+                ", " +
+                length +
+                ", " +
+                format;
     }
 }

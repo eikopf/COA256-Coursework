@@ -57,19 +57,20 @@ public class AddScene extends Scene {
     private static final URL styleSheetAddress = Main.class.getResource("css/user-scene.css");
     private static final Random source = new Random();
 
-    // key handler
-    private EventHandler<KeyEvent> keyReleaseHandler = event -> {
-        switch (event.getCode()) {
-            case ESCAPE -> loadAdminScene();
-            default -> {
-            }
-        }
-    };
-
     private AddScene(Parent root, Admin admin) {
         super(root);
         this.admin = admin;
         this.selectedBookProperty = new SimpleIntegerProperty(0);
+
+        // key handler
+        EventHandler<KeyEvent> keyReleaseHandler = event -> {
+            switch (event.getCode()) {
+                case ESCAPE -> loadAdminScene();
+                default -> {
+                }
+            }
+        };
+
         addEventHandler(KeyEvent.KEY_RELEASED, keyReleaseHandler);
     }
 
@@ -135,9 +136,7 @@ public class AddScene extends Scene {
         Label titleLabel = new Label("Title: ");
         titleLabel.setFont(GUIConstants.montserrat20);
         TextField titleField = new TextField();
-        titleField.setOnKeyReleased((event) -> {
-            scene.selectedBookTitle = titleField.getText();
-        });
+        titleField.setOnKeyReleased((event) -> scene.selectedBookTitle = titleField.getText());
         titleField.setFont(GUIConstants.montserrat12Italic);
         HBox.setHgrow(titleField, Priority.ALWAYS);
         titleEntryContainer.getChildren().addAll(titleLabel, titleField);
@@ -156,9 +155,7 @@ public class AddScene extends Scene {
                 AbstractBook.Genre.ComputerScience,
                 AbstractBook.Genre.Politics);
         ComboBox<AbstractBook.Genre> genreBox = new ComboBox<>(genreItems);
-        genreBox.getSelectionModel().selectedItemProperty().addListener((change) -> {
-            scene.selectedBookGenre = genreBox.getSelectionModel().getSelectedItem();
-        });
+        genreBox.getSelectionModel().selectedItemProperty().addListener((change) -> scene.selectedBookGenre = genreBox.getSelectionModel().getSelectedItem());
         genreBox.setPrefWidth(150);
         genreEntryContainer.getChildren().addAll(genreLabel, genreFillerField, genreBox);
 
@@ -175,9 +172,7 @@ public class AddScene extends Scene {
                 AbstractBook.Language.English,
                 AbstractBook.Language.French);
         ComboBox<AbstractBook.Language> languageBox = new ComboBox<>(languageItems);
-        languageBox.getSelectionModel().selectedItemProperty().addListener((change) -> {
-            scene.selectedBookLanguage = languageBox.getSelectionModel().getSelectedItem();
-        });
+        languageBox.getSelectionModel().selectedItemProperty().addListener((change) -> scene.selectedBookLanguage = languageBox.getSelectionModel().getSelectedItem());
         languageBox.setPrefWidth(150);
         languageEntryContainer.getChildren().addAll(languageLabel, languageFillerField, languageBox);
 
@@ -192,9 +187,7 @@ public class AddScene extends Scene {
         HBox.setHgrow(dateFillerField, Priority.ALWAYS);
         DatePicker datePicker = new DatePicker(LocalDate.now());
         scene.selectedBookDate = LocalDate.now();
-        datePicker.valueProperty().addListener((change) -> {
-            scene.selectedBookDate = datePicker.getValue();
-        });
+        datePicker.valueProperty().addListener((change) -> scene.selectedBookDate = datePicker.getValue());
         datePicker.setPrefWidth(150);
         dateEntryContainer.getChildren().addAll(dateLabel, dateFillerField, datePicker);
 
@@ -285,29 +278,16 @@ public class AddScene extends Scene {
 
         lengthField.textProperty().addListener((change) -> {
             switch (scene.selectedBookProperty.get()) {
-                case 0 -> { // paperback
-                    scene.selectedPaperbackPages = Integer.parseInt(lengthField.getText());
-                }
-                case 1 -> { // audiobook
-                    scene.selectedAudiobookLength = Double.parseDouble(lengthField.getText());
-                }
-                case 2 -> { // ebook
-                    scene.selectedEbookPages = Integer.parseInt(lengthField.getText());
-                }
+                case 0 -> scene.selectedPaperbackPages = Integer.parseInt(lengthField.getText());
+                case 1 -> scene.selectedAudiobookLength = Double.parseDouble(lengthField.getText());
+                case 2 -> scene.selectedEbookPages = Integer.parseInt(lengthField.getText());
             }
         });
 
         scene.selectedBookProperty.addListener((change) -> {
                 switch (scene.selectedBookProperty.get()) {
-                    case 0 -> { // paperback
-                        lengthLabel.setText("Pages: ");
-                    }
-                    case 1 -> {
-                        lengthLabel.setText("Length (Hours): ");
-                    }
-                    case 2 -> {
-                        lengthLabel.setText("Pages: ");
-                    }
+                    case 0, 2 -> lengthLabel.setText("Pages: ");
+                    case 1 -> lengthLabel.setText("Length (Hours): ");
                 }
         });
 
@@ -419,7 +399,7 @@ public class AddScene extends Scene {
         StringBuilder builder = new StringBuilder();
 
         for (int i = 0; i < 8; i++) {
-            builder.append(String.valueOf(source.nextInt(0, 10)));
+            builder.append(source.nextInt(0, 10));
         }
 
         return builder.toString();

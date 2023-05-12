@@ -1,7 +1,3 @@
-import java.util.Comparator;
-
-import org.kordamp.ikonli.javafx.FontIcon;
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -9,11 +5,13 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionModel;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import org.kordamp.ikonli.javafx.FontIcon;
+
+import java.util.Comparator;
 
 /**
  * A JavaFX GUI element providing the ability to search through books in the
@@ -22,16 +20,11 @@ import javafx.scene.layout.VBox;
  */
 public class BookSearch<T extends AbstractUser> extends VBox {
 
-    private T user;
-
     private StringProperty currentQuery, previousQuery;
-    private SelectionModel<AbstractBook> selectionModel;
 
-    private static Comparator<AbstractBook> defaultSearchResultComparator = (a, b) -> {
-        return a.barcode.compareTo(b.barcode);
-    };
+    private static final Comparator<AbstractBook> defaultSearchResultComparator = Comparator.comparing(a -> a.barcode);
 
-    private Comparator<AbstractBook> levenshteinSearchResultComparator = (a, b) -> {
+    private final Comparator<AbstractBook> levenshteinSearchResultComparator = (a, b) -> {
         String query = this.currentQuery.get();
         return levenshtein(query, a.title.toLowerCase()) - levenshtein(query, b.title.toLowerCase());
     };
@@ -63,24 +56,19 @@ public class BookSearch<T extends AbstractUser> extends VBox {
         }
     }
 
-    private BookSearch(T user) {
+    private BookSearch() {
         super();
         this.currentQuery = new SimpleStringProperty();
         this.previousQuery = new SimpleStringProperty();
-        this.user = user;
     }
 
     public static <T extends AbstractUser> BookSearch<T> getBookSearch(BookshopManager manager, T user) {
-        BookSearch<T> root = new BookSearch<>(user);
+        BookSearch<T> root = new BookSearch<>();
         root.setSpacing(12);
         VBox.setVgrow(root, Priority.ALWAYS);
         root.constructSearchBar();
         root.constructSearchResults(manager, user);
         return root;
-    }
-
-    public SelectionModel<AbstractBook> getSelectionModel() {
-        return this.selectionModel;
     }
 
     private void constructSearchBar() {
@@ -115,9 +103,7 @@ public class BookSearch<T extends AbstractUser> extends VBox {
         FilteredList<AbstractBook> filteredBooks = new FilteredList<>(books, p -> true);
 
         // bind changes in results to changes in query
-        this.currentQuery.addListener((observable, oldVal, newVal) -> {
-            filteredBooks.setPredicate(book -> book.title.toLowerCase().contains(currentQuery.get().toLowerCase()));
-        });
+        this.currentQuery.addListener((observable, oldVal, newVal) -> filteredBooks.setPredicate(book -> book.title.toLowerCase().contains(currentQuery.get().toLowerCase())));
 
         // sort data by search term
         SortedList<AbstractBook> sortedBooks = new SortedList<>(filteredBooks, defaultSearchResultComparator);
@@ -137,7 +123,6 @@ public class BookSearch<T extends AbstractUser> extends VBox {
         searchResults.setCellFactory(new BookCellFactory(manager, sortedBooks, user));
         VBox.setVgrow(searchResults, Priority.ALWAYS);
 
-        this.selectionModel = searchResults.getSelectionModel();
         this.getChildren().add(searchResults);
     }
 }

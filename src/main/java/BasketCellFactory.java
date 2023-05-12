@@ -11,11 +11,9 @@ import javafx.util.Callback;
 
 public class BasketCellFactory implements Callback<ListView<AbstractBook>, ListCell<AbstractBook>> {
 
-    private Customer customer;
-    private ObservableMap<AbstractBook, Integer> basket;
+    private final ObservableMap<AbstractBook, Integer> basket;
 
     public BasketCellFactory(Customer customer) {
-        this.customer = customer;
         this.basket = customer.getBasket();
     }
 
@@ -61,7 +59,7 @@ public class BasketCellFactory implements Callback<ListView<AbstractBook>, ListC
                     root.setSpacing(12);
                     root.getStyleClass().addAll("box", "hbox", "basket-root");
 
-                    Label quantityLabel = new Label("x" + Integer.toString(quantity));
+                    Label quantityLabel = new Label("x" + quantity);
                     quantityLabel.getStyleClass().addAll("text", "quantity-text");
                     quantityLabel.setFont(GUIConstants.montserrat25Bold);
                     quantityLabel.setPrefWidth(60);
@@ -101,7 +99,7 @@ public class BasketCellFactory implements Callback<ListView<AbstractBook>, ListC
                     totalPriceLabel.getStyleClass().addAll("text", "price-label", "label");
                     totalPriceLabel.setFont(GUIConstants.montserrat20);
 
-                    Label unitPriceLabel = new Label(Integer.toString(quantity) +
+                    Label unitPriceLabel = new Label(quantity +
                                                      " x " +
                                                      GUIConstants.currencyFormat.format(unitPrice));
                     unitPriceLabel.getStyleClass().addAll("text", "price-label", "label");

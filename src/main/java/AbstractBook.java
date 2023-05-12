@@ -138,11 +138,8 @@ public abstract class AbstractBook {
         if (Double.doubleToLongBits(retailPrice) != Double.doubleToLongBits(other.retailPrice))
             return false;
         if (title == null) {
-            if (other.title != null)
-                return false;
-        } else if (!title.equals(other.title))
-            return false;
-        return true;
+            return other.title == null;
+        } else return title.equals(other.title);
     }
 
     abstract public String toDataString(int count);

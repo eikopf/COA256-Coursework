@@ -12,13 +12,11 @@ import javafx.scene.layout.VBox;
 
 public class PurchaseBar extends HBox {
 
-    private SimpleIntegerProperty basketTotalCount;
-    private SimpleDoubleProperty basketTotalPrice;
-    private Customer customer;
-    private ObservableMap<AbstractBook, Integer> basket;
+    private final SimpleIntegerProperty basketTotalCount;
+    private final SimpleDoubleProperty basketTotalPrice;
+    private final ObservableMap<AbstractBook, Integer> basket;
 
     private PurchaseBar(Customer customer) {
-        this.customer = customer;
         this.basket = customer.getBasket();
         this.basketTotalCount = new SimpleIntegerProperty(computeBasketTotalCount(basket));
         this.basketTotalPrice = new SimpleDoubleProperty(computeBasketTotalPrice(basket));
@@ -55,7 +53,7 @@ public class PurchaseBar extends HBox {
         root.getStyleClass().addAll("purchase-bar", "box", "hbox");
         root.setSpacing(12);
 
-        Label totalCountLabel = new Label("x" + Integer.toString(root.getBasketTotalCount().get()));
+        Label totalCountLabel = new Label("x" + root.getBasketTotalCount().get());
         totalCountLabel.getStyleClass().addAll("text", "total-count", "label");
         totalCountLabel.setFont(GUIConstants.montserrat25Bold);
         totalCountLabel.setPrefWidth(60);
@@ -75,17 +73,13 @@ public class PurchaseBar extends HBox {
         clearButton.setGraphic(clearIcon);
         clearButton.setPrefHeight(50);
 
-        clearButton.setOnMouseClicked((event) -> {
-                customer.clearBasket();
-            });
+        clearButton.setOnMouseClicked((event) -> customer.clearBasket());
 
         Button paymentButton = new Button("Purchase");
         paymentButton.getStyleClass().addAll("text", "button", "payment-button");
         paymentButton.setFont(GUIConstants.montserrat25Bold);
 
-        paymentButton.setOnMouseClicked((event) -> {
-                customer.purchase();
-            });
+        paymentButton.setOnMouseClicked((event) -> customer.purchase());
 
         root.getChildren().addAll(totalCountLabel, stretchBar, clearButton, paymentButton);
         return root;

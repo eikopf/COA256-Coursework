@@ -16,9 +16,7 @@ public class TopBar<T extends AbstractUser> extends HBox {
         Button paymentButton = new Button();
         paymentButton.setGraphic(paymentIcon);
 
-        paymentButton.setOnMouseClicked((event) -> {
-                Main.getPrimaryStage().setScene(PaymentScene.getPaymentScene(customer));
-        });
+        paymentButton.setOnMouseClicked((event) -> Main.getPrimaryStage().setScene(PaymentScene.getPaymentScene(customer)));
 
         FontIcon basketIcon = new FontIcon("mdi2b-basket");
         basketIcon.getStyleClass().addAll("basket-icon", "icon");
@@ -26,9 +24,7 @@ public class TopBar<T extends AbstractUser> extends HBox {
         Button basketButton = new Button();
         basketButton.setGraphic(basketIcon);
 
-        basketButton.setOnMouseClicked((event) -> {
-                Main.getPrimaryStage().setScene(BasketScene.getBasketScene(customer));
-            });
+        basketButton.setOnMouseClicked((event) -> Main.getPrimaryStage().setScene(BasketScene.getBasketScene(customer)));
 
         topBar.getChildren().add(2, paymentButton);
         topBar.getChildren().add(3, basketButton);
@@ -43,9 +39,7 @@ public class TopBar<T extends AbstractUser> extends HBox {
 
         Button addButton = new Button();
         addButton.setGraphic(addIcon);
-        addButton.setOnMouseClicked((event) -> {
-                Main.getPrimaryStage().setScene(AddScene.getAddScene(admin));
-            });
+        addButton.setOnMouseClicked((event) -> Main.getPrimaryStage().setScene(AddScene.getAddScene(admin)));
 
         topBar.getChildren().add(2, addButton);
         return topBar;
@@ -63,9 +57,7 @@ public class TopBar<T extends AbstractUser> extends HBox {
         backButton.getStyleClass().addAll("button", "back-button");
         backButton.setGraphic(backIcon);
 
-        backButton.setOnMouseClicked((event) -> {
-                Main.getPrimaryStage().setScene(LoginScene.getLoginScene(Main.getBookshopManager()));
-            });
+        backButton.setOnMouseClicked((event) -> Main.getPrimaryStage().setScene(LoginScene.getLoginScene(Main.getBookshopManager())));
 
         HBox labelContainer = new HBox();
         labelContainer.getStyleClass().add("label-container");
@@ -90,22 +82,20 @@ public class TopBar<T extends AbstractUser> extends HBox {
     }
 
     private static String getCustomerString(Customer customer) {
-        return new StringBuilder(customer.username)
-            .append(" (")
-            .append(customer.id)
-            .append(") @ ")
-            .append(customer.address.city)
-            .append(" ")
-            .append(customer.address.postcode)
-            .toString();
+        return customer.username +
+                " (" +
+                customer.id +
+                ") @ " +
+                customer.address.city +
+                " " +
+                customer.address.postcode;
     }
 
     private static String getAdminString(Admin admin) {
-        return new StringBuilder("Administrator: ")
-            .append(admin.username)
-            .append(" (")
-            .append(admin.id)
-            .append(")")
-            .toString();
+        return "Administrator: " +
+                admin.username +
+                " (" +
+                admin.id +
+                ")";
     }
 }

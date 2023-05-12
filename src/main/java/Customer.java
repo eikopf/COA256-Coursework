@@ -20,7 +20,7 @@ public class Customer extends AbstractUser {
      * Stores the contents of the user's basket.
      * The value assigned to each key represents the number of that key in the basket
      */
-    private SimpleMapProperty<AbstractBook, Integer> basket;
+    private final SimpleMapProperty<AbstractBook, Integer> basket;
 
     /*
      * Constructs a Customer
@@ -76,12 +76,6 @@ public class Customer extends AbstractUser {
         return true;
     }
 
-    public void decrementCountInBasket(AbstractBook book) {
-        assert basket.containsKey(book); // should never be called on books that aren't in the basket
-        if (basket.get(book) == 1) { basket.remove(book); return; }
-        basket.put(book, basket.get(book) - 1);
-    }
-
     public void clearBasket() {
         basket.clear();
     }
@@ -96,7 +90,7 @@ public class Customer extends AbstractUser {
             throw new RuntimeException(e);
         }
 
-        clearBasket(); // TODO: propogate this change to purchase bar
+        clearBasket();
         return true;
     }
 

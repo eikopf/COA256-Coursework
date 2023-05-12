@@ -83,15 +83,19 @@
     -fx-icon-size: 30;
 }
 
-.add-scene-root-container {
-    -fx-alignment: "center";
-}
-
 .add-scene-interactable-container {
     -fx-alignment: "top-center";
 }
 
+.payment-scene-interactable-container {
+    -fx-alignment: "top-center";
+}
+
 .type-select-container {
+    -fx-alignment: "center";
+}
+
+.payment-scene-root-container {
     -fx-alignment: "center";
 }
 

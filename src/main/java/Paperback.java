@@ -55,11 +55,11 @@ public class Paperback extends AbstractBook{
          * @return a reasonable equivalent value of Paperback.Condition
          */
         public static Condition toCondition(String condition) {
-            switch (condition.toLowerCase()) {
-                case "new" : return Condition.New;
-                case "used" : return Condition.Used;
-                default : throw new EnumConstantNotPresentException(Condition.class, condition);
-            }
+            return switch (condition.toLowerCase()) {
+                case "new" -> Condition.New;
+                case "used" -> Condition.Used;
+                default -> throw new EnumConstantNotPresentException(Condition.class, condition);
+            };
         }
 
         @Override
@@ -91,31 +91,28 @@ public class Paperback extends AbstractBook{
         Paperback other = (Paperback) obj;
         if (condition != other.condition)
             return false;
-        if (pages != other.pages)
-            return false;
-        return true;
+        return pages == other.pages;
     }
 
     public String toDataString(int count) {
-        return new StringBuilder(this.barcode)
-            .append(", paperback")
-            .append(", ")
-            .append(title)
-            .append(", ")
-            .append(language)
-            .append(", ")
-            .append(genre)
-            .append(", ")
-            .append(dateFormatter.format(releaseDate))
-            .append(", ")
-            .append(count)
-            .append(", ")
-            .append(retailPrice)
-            .append(", ")
-            .append(pages)
-            .append(", ")
-            .append(condition)
-            .toString();
+        return this.barcode +
+                ", paperback" +
+                ", " +
+                title +
+                ", " +
+                language +
+                ", " +
+                genre +
+                ", " +
+                dateFormatter.format(releaseDate) +
+                ", " +
+                count +
+                ", " +
+                retailPrice +
+                ", " +
+                pages +
+                ", " +
+                condition;
     }
 
 }

@@ -55,21 +55,19 @@ public class BookCellFactory implements Callback<ListView<AbstractBook>, ListCel
     }
 
     private static String getMinorSubtitle(AbstractBook book) {
-        return new StringBuilder(book.language.toString())
-                .append(", ")
-                .append(book.genre)
-                .append(", ")
-                .append("Released ")
-                .append(book.releaseDate)
-                .toString();
+        return book.language.toString() +
+                ", " +
+                book.genre +
+                ", " +
+                "Released " +
+                book.releaseDate;
     }
 
     private static String getTitle(AbstractBook book) {
-        return new StringBuilder(book.title)
-                .append(" (")
-                .append(book.barcode)
-                .append(")")
-                .toString();
+        return book.title +
+                " (" +
+                book.barcode +
+                ")";
     }
 
     @Override
@@ -123,7 +121,7 @@ public class BookCellFactory implements Callback<ListView<AbstractBook>, ListCel
                     VBox valueContainer = new VBox();
                     valueContainer.getStyleClass().addAll("box", "vbox", "book-cell-value-container");
 
-                    Label stockCountLabel = new Label("Remaining: " + Integer.toString(stock));
+                    Label stockCountLabel = new Label("Remaining: " + stock);
                     stockCountLabel.setFont(GUIConstants.montserrat12);
                     stockCountLabel.getStyleClass().addAll("text", "label", "stock-label", "book-cell-text");
 
@@ -141,9 +139,7 @@ public class BookCellFactory implements Callback<ListView<AbstractBook>, ListCel
                         addButton.getStyleClass().addAll("button", "add-button", "icon-button");
                         addButton.setGraphic(addIcon);
 
-                        addButton.setOnMouseClicked((event) -> {
-                                ((Customer) user).incrementCountInBasket(book);
-                            });
+                        addButton.setOnMouseClicked((event) -> ((Customer) user).incrementCountInBasket(book));
 
                         root.getChildren().addAll(bookIcon, textContainer, valueContainer, addButton);
                     } else {

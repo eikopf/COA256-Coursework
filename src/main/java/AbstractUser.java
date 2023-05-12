@@ -37,20 +37,18 @@ public abstract class AbstractUser {
     }
 
     public String getLabel() {
-        return new StringBuilder(username)
-            .append(" (ID: ")
-            .append(id)
-            .append(")")
-            .toString();
+        return username +
+                " (ID: " +
+                id +
+                ")";
     }
 
     public String getSubLabel() {
-        return new StringBuilder(surname)
-            .append(" @ ")
-            .append(address.city)
-            .append(" (")
-            .append(address.postcode)
-            .append(")")
-            .toString();
+        return surname +
+                " @ " +
+                address.city +
+                " (" +
+                address.postcode +
+                ")";
     }
 }

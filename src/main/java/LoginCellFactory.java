@@ -86,7 +86,7 @@ public class LoginCellFactory implements Callback<ListView<AbstractUser>, ListCe
                     setText(null);
                     setGraphic(null);
                 }
-            };
+            }
         };
     }
 }

@@ -13,17 +13,9 @@ import javafx.scene.layout.VBox;
 
 public class BasketScene extends Scene {
 
-    private Customer customer;
-    private static BookshopManager manager = Main.getBookshopManager();
-    private static URL styleSheetAddress = Main.class.getResource("css/user-scene.css");
-
-    private EventHandler<KeyEvent> keyReleaseHandler = event -> {
-        switch (event.getCode()) {
-            case ESCAPE -> loadCustomerScene();
-            default -> {
-            }
-        }
-    };
+    private final Customer customer;
+    private static final BookshopManager manager = Main.getBookshopManager();
+    private static final URL styleSheetAddress = Main.class.getResource("css/user-scene.css");
 
     private void loadCustomerScene() {
         Main.getPrimaryStage().setScene(UserScene.getCustomerScene(manager, customer));
@@ -32,6 +24,15 @@ public class BasketScene extends Scene {
     private BasketScene(Parent root, Customer customer) {
         super(root);
         this.customer = customer;
+
+        EventHandler<KeyEvent> keyReleaseHandler = event -> {
+            switch (event.getCode()) {
+                case ESCAPE -> loadCustomerScene();
+                default -> {
+                }
+            }
+        };
+
         addEventHandler(KeyEvent.KEY_RELEASED, keyReleaseHandler);
     }
 
@@ -43,9 +44,7 @@ public class BasketScene extends Scene {
 
         // construct topbar and override back button functionality
         TopBar<Customer> topBar = TopBar.getCustomerTopBar(customer);
-        topBar.getChildren().get(0).setOnMouseClicked((event) -> {
-            scene.loadCustomerScene();
-        });
+        topBar.getChildren().get(0).setOnMouseClicked((event) -> scene.loadCustomerScene());
 
         ListView<AbstractBook> basketListView = getBasketListView(customer);
         PurchaseBar purchaseBar = PurchaseBar.getPurchaseBar(customer);

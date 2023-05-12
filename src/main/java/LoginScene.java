@@ -21,7 +21,7 @@ public class LoginScene extends Scene {
     /**
      * Custom event handler bound to {@link KeyEvent}.KEYRELEASED at instantiation.
      */
-    private static EventHandler<KeyEvent> keyReleaseHandler = event -> {
+    private static final EventHandler<KeyEvent> keyReleaseHandler = event -> {
 
         // switches on the specific key event that occurs
         switch (event.getCode()) {
@@ -47,9 +47,7 @@ public class LoginScene extends Scene {
      * This comparator is broken out from the instantiation of the user list,
      * to allow for it to be more easily adjusted.
      */
-    private static Comparator<AbstractUser> userComparator = (a, b) -> {
-        return a.id.compareTo(b.id);
-    };
+    private static final Comparator<AbstractUser> userComparator = Comparator.comparing(a -> a.id);
 
     private LoginScene(Parent root, BookshopManager manager) {
         super(root);
@@ -81,6 +79,7 @@ public class LoginScene extends Scene {
 
         LoginScene scene = new LoginScene(pane, manager);
         URL styleSheet = Main.class.getResource("css/login-scene.css");
+        assert styleSheet != null;
         scene.getStylesheets().add(styleSheet.toExternalForm());
 
         return scene;

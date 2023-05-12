@@ -1,3 +1,9 @@
+import javafx.beans.property.SimpleMapProperty;
+import javafx.beans.property.SimpleSetProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
+import javafx.collections.ObservableSet;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -11,15 +17,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
-
-import javafx.beans.property.SimpleMapProperty;
-import javafx.beans.property.SimpleSetProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableMap;
-import javafx.collections.ObservableSet;
 
 /**
  * Represents and controls the bookshop system, including permissions.
@@ -29,14 +28,8 @@ import javafx.collections.ObservableSet;
  * to indicate that the request could not be fulfilled.
  */
 public class BookshopManager {
-    private SimpleMapProperty<AbstractBook, Integer> books;
-    private SimpleSetProperty<AbstractUser> users;
-
-    public BookshopManager(HashMap<AbstractBook, Integer> books, HashSet<AbstractUser> users) {
-        this.books = new SimpleMapProperty<>(FXCollections.observableHashMap());
-        this.books.putAll(books);
-        this.users = new SimpleSetProperty<>(FXCollections.observableSet(users));
-    }
+    private final SimpleMapProperty<AbstractBook, Integer> books;
+    private final SimpleSetProperty<AbstractUser> users;
 
     public BookshopManager() {
         this.books = new SimpleMapProperty<>(FXCollections.observableHashMap());
@@ -46,7 +39,6 @@ public class BookshopManager {
     /**
      * Attempts to read user and book data from disk
      *
-     * @throws AbstractBook.MalformedBookCharacteristicException
      */
     BookshopManager initialize(InputStream stockFileStream,
             InputStream userAccountsFileStream) throws AbstractBook.MalformedBookCharacteristicException {
@@ -142,6 +134,7 @@ public class BookshopManager {
         URL stockFileURL = Main.class.getResource("/datafiles/Stock.txt");
 
         // get read-handle to file & init builder
+        assert stockFileURL != null;
         BufferedReader reader = Files.newBufferedReader(Paths.get(stockFileURL.toURI()));
         StringBuilder builder = new StringBuilder();
 
@@ -184,14 +177,13 @@ public class BookshopManager {
         URL stockFileURL = Main.class.getResource("/datafiles/Stock.txt");
 
         // get read-handle to file & init builder
+        assert stockFileURL != null;
         BufferedReader reader = Files.newBufferedReader(Paths.get(stockFileURL.toURI()));
         StringBuilder builder = new StringBuilder();
 
         // build barcode-book map
         HashMap<String, AbstractBook> barcodeMap = new HashMap<>();
-        basket.forEach((book, count) -> {
-            barcodeMap.put(book.barcode, book);
-        });
+        basket.forEach((book, count) -> barcodeMap.put(book.barcode, book));
 
         // iterate over reader and append to builder
         // make changes by matching barcode
@@ -210,9 +202,7 @@ public class BookshopManager {
                     return;
 
                 StringBuilder resultBuilder = new StringBuilder();
-                Arrays.stream(fields).forEachOrdered((field) -> {
-                    resultBuilder.append(field + ", ");
-                });
+                Arrays.stream(fields).forEachOrdered((field) -> resultBuilder.append(field).append(", "));
 
                 builder.append(resultBuilder.substring(0, resultBuilder.length() - 2));
             }
@@ -239,6 +229,7 @@ public class BookshopManager {
         URL userFileURL = Main.class.getResource("/datafiles/UserAccounts.txt");
 
         // get read-handle to file & init builder
+        assert userFileURL != null;
         BufferedReader reader = Files.newBufferedReader(Paths.get(userFileURL.toURI()));
         StringBuilder builder = new StringBuilder();
 
@@ -252,9 +243,7 @@ public class BookshopManager {
 
                 fields[6] = Double.toString(newBalance);
                 StringBuilder resultBuilder = new StringBuilder();
-                Arrays.stream(fields).forEachOrdered((field) -> {
-                    resultBuilder.append(field + ", ");
-                });
+                Arrays.stream(fields).forEachOrdered((field) -> resultBuilder.append(field).append(", "));
 
                 // append result without the final extraneous ", "
                 builder.append(resultBuilder.substring(0, resultBuilder.length() - 2));

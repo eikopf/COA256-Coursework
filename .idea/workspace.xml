@@ -6,10 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="4d99c245-dce9-4aae-8ec2-8429423a9553" name="Changes" comment="reverted to JDK 17 compatibility">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/AbstractBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AbstractBook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/AbstractUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AbstractUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/AddScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AddScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Audiobook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Audiobook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BasketCellFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BasketCellFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BasketScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BasketScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BookCellFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BookCellFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BookSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BookSearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BookshopManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BookshopManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CustomerScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CustomerScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/css/customer-scene.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/customer-scene.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Ebook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Ebook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GUIConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUIConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/LoginCellFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/LoginCellFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/LoginScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/LoginScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PaymentScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PaymentScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/css/user-scene.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/user-scene.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +132,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.COA256-Coursework-Gradle [buildSubmission]">
+  <component name="RunManager" selected="Gradle.COA256-Coursework-Gradle [run]">
     <configuration name="COA256-Coursework-Gradle [buildRelease]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -270,6 +282,7 @@
       <workItem from="1680458444746" duration="400000" />
       <workItem from="1681661538244" duration="394000" />
       <workItem from="1681661944849" duration="564000" />
+      <workItem from="1683913861264" duration="1354000" />
     </task>
     <task id="LOCAL-00001" summary="adding .gitignore">
       <created>1678361479976</created>
