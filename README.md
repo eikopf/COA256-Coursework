@@ -15,8 +15,20 @@ user data, and mainly exists to demonstrate common OOP principles
 (inheritance, abstraction, interfaces), as well as some more advanced
 concepts (nested objects, records, builders).
 
-The second is the actual UI component, built using JavaFX.
-`TODO: finish this part`
+The second is the actual UI component, built using JavaFX. This is significantly larger
+than the "actual" project, but is also the more complicated and interesting part. It makes
+heavy use of the Observer pattern, and is designed to follow some general design principles:
+
+1. Large fonts and icons, for clarity;
+2. Consistent UI components, namely in the "TopBar;"
+3. Separation of concerns between administration and consumption.
+
+Rather unintentionally, this separation of the project into a data model and UI component
+is essentially a rudimentary version of an MVC model (though I had not considered this when
+designing). In this case, the view and controller components were merged to form the UI component,
+which caused some headaches when making significant changes; in future I would probably adhere more
+strictly to an existing pattern, like real MVC. Admittedly, in future I would also probably not
+design a UI in Java, but that's a separate issue.
 
 ## Building from Source
 
